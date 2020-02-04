@@ -1,0 +1,360 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "Koje su boje na zastavi Srbije, crvena, bela i ?",
+      "answer1": "zuta",
+      "answer2": "plava",
+      "answer3": "zelena",
+      "answer4": "crvena",
+      "correctAnswer": "B"
+    },
+    {
+      "id": 2,
+      "question": "Gde je nastala prva cokolada?",
+      "answer1": "U Italiji",
+      "answer2": "U Svajcarskoj",
+      "answer3": "U Austriji",
+      "answer4": "U Nemackoj",
+      "correctAnswer": "B"
+    },
+    {
+      "id": 3,
+      "question": "Koji od navedenih gradova ima najvise mostova?",
+      "answer1": "Venecija",
+      "answer2": "Amsterdam",
+      "answer3": "Hamburg",
+      "answer4": "Beograd",
+      "correctAnswer": "C"
+    },
+    {
+      "id": 4,
+      "question": "Kako se nazivao najveci dinosaurus mesozder koji je ikada postojao na zemlji?",
+      "answer1": "diplodok",
+      "answer2": "tiranosaurus",
+      "answer3": "mesosaurus",
+      "answer4": "spinosaurus",
+      "correctAnswer": "B"
+    },
+    {
+      "id": 5,
+      "question": "Kako se naziva najveca piramida u Gizi, u Egiptu?",
+      "answer1": "Zevsova",
+      "answer2": "Keopsova",
+      "answer3": "Kefrenova",
+      "answer4": "Mikerinova",
+      "correctAnswer": "B"
+    },
+    {
+      "id": 6,
+      "question": "Odakle potice kafa?",
+      "answer1": "Iz stare Grcke",
+      "answer2": "Iz Etiopije",
+      "answer3": "Iz Turske",
+      "answer4": "Iz Brazila",
+      "correctAnswer": "B"
+    },
+    {
+      "id": 7,
+      "question": "Vrhovni Bog u grckoj mitologiji?",
+      "answer1": "Zevs",
+      "answer2": "Had",
+      "answer3": "Posejdon",
+      "answer4": "Hefest",
+      "correctAnswer": "A"
+    },
+    {
+      "id": 8,
+      "question": "Inke su iz?",
+      "answer1": "Meksika",
+      "answer2": "Brazila",
+      "answer3": "Argentine",
+      "answer4": "Perua",
+      "correctAnswer": "D"
+    },
+    {
+      "id": 9,
+      "question": "Kako se zove grcka Boginja ljubavi?",
+      "answer1": "Atina",
+      "answer2": "Afrodita",
+      "answer3": "Venera",
+      "answer4": "Hera",
+      "correctAnswer": "D"
+    },
+    {
+      "id": 10,
+      "question": "Katalonija je deo koje zemlje?",
+      "answer1": "Portugala",
+      "answer2": "Maroka",
+      "answer3": "Spanije",
+      "answer4": "Tunisa",
+      "correctAnswer": "C"
+    },
+    {
+      "id": 11,
+      "question": "Kada je poceo II svetski rat?",
+      "answer1": "1940",
+      "answer2": "1939",
+      "answer3": "1941",
+      "answer4": "1945",
+      "correctAnswer": "B"
+    },
+    {
+      "id": 12,
+      "question": "Koje boje je rubin?",
+      "answer1": "plave",
+      "answer2": "crvene",
+      "answer3": "zelene",
+      "answer4": "zute",
+      "correctAnswer": "B"
+    },
+    {
+      "id": 13,
+      "question": "Ko je napisao Odiseju i Ilijadu?",
+      "answer1": "Euripid",
+      "answer2": "Homer",
+      "answer3": "Ezop",
+      "answer4": "Herodot",
+      "correctAnswer": "B"
+    },
+    {
+      "id": 14,
+      "question": "Sta je koagulacija?",
+      "answer1": "zgrusavanje",
+      "answer2": "saradnja",
+      "answer3": "ulivanje",
+      "answer4": "razlivanje",
+      "correctAnswer": "A"
+    },
+    {
+      "id": 15,
+      "question": "Kojoj drzavi pripada ostrvo Korzika?",
+      "answer1": "Italiji",
+      "answer2": "Monaku",
+      "answer3": "Francuskoj",
+      "answer4": "Spaniji",
+      "correctAnswer": "C"
+    },
+    {
+      "id": 16,
+      "question": "Antagonizam je vrsta:",
+      "answer1": "suprotnosti",
+      "answer2": "slicnosti",
+      "answer3": "ravnodusnosti",
+      "answer4": "privlacnosti",
+      "correctAnswer": "A"
+    },
+    {
+      "id": 17,
+      "question": "Kako se naziva najvisi pravni akt neke drzave?",
+      "answer1": "uredba",
+      "answer2": "zakon",
+      "answer3": "ustav",
+      "answer4": "pravilnik",
+      "correctAnswer": "C"
+    },
+    {
+      "id": 18,
+      "question": "Protiv cega se bori Don Kihot?",
+      "answer1": "kralja",
+      "answer2": "vetrenjaca",
+      "answer3": "siromastva",
+      "answer4": "razbojnika",
+      "correctAnswer": "B"
+    },
+    {
+      "id": 19,
+      "question": "Gde je poceo II srpski ustanak?",
+      "answer1": "Orascu",
+      "answer2": "Takovu",
+      "answer3": "Kragujevcu",
+      "answer4": "Krusevcu",
+      "correctAnswer": "B"
+    },
+    {
+      "id": 20,
+      "question": "Had je bog:",
+      "answer1": "rata",
+      "answer2": "podzemlja",
+      "answer3": "vode",
+      "answer4": "umetnosti",
+      "correctAnswer": "B"
+    },
+    {
+      "id": 21,
+      "question": "Sari je tradicionalna odeca:",
+      "answer1": "Indijki",
+      "answer2": "Iranki",
+      "answer3": "Kineskinja",
+      "answer4": "Japanki",
+      "correctAnswer": "A"
+    },
+    {
+      "id": 22,
+      "question": "Monsun je vrsta:",
+      "answer1": "pica",
+      "answer2": "jela",
+      "answer3": "vetra",
+      "answer4": "vode",
+      "correctAnswer": "C"
+    },
+    {
+      "id": 23,
+      "question": "Ramazan je mesec posta kod:",
+      "answer1": "hriscana",
+      "answer2": "muslimana",
+      "answer3": "hinduista",
+      "answer4": "budista",
+      "correctAnswer": "B"
+    },
+    {
+      "id": 24,
+      "question": "Kako se naziva strah od letenja?",
+      "answer1": "agorafobija",
+      "answer2": "aerofobija",
+      "answer3": "akvafobija",
+      "answer4": "ksenofobija",
+      "correctAnswer": "B"
+    },
+    {
+      "id": 25,
+      "question": "Sta cuva Pandorina kutija kao poslednju u sebi?",
+      "answer1": "nadu",
+      "answer2": "smrt",
+      "answer3": "tugu",
+      "answer4": "ljubav",
+      "correctAnswer": "A"
+    },
+    {
+      "id": 26,
+      "question": "Kako se naziva kanal koji spaja Atlantik i Pacifik?",
+      "answer1": "Latinski",
+      "answer2": "Juznoamericki",
+      "answer3": "Bermudski",
+      "answer4": "Panamski",
+      "correctAnswer": "D"
+    },
+    {
+      "id": 27,
+      "question": "Macu Pikcu je drevni grad:",
+      "answer1": "Inka",
+      "answer2": "Maja",
+      "answer3": "Asteka",
+      "answer4": "Kreolaca",
+      "correctAnswer": "A"
+    },
+    {
+      "id": 28,
+      "question": "Ko je naslikao Mona Lizu?",
+      "answer1": "Leonardo da Vinci",
+      "answer2": "Donatelo",
+      "answer3": "Mikelandjelo Bunuaroti",
+      "answer4": "Vinsent Van Gog",
+      "correctAnswer": "A"
+    },
+    {
+      "id": 29,
+      "question": "Prestonica Srbije nikad nije bio",
+      "answer1": "Krusevac",
+      "answer2": "Nis",
+      "answer3": "Kragujevac",
+      "answer4": "Cacak",
+      "correctAnswer": "D"
+    },
+    {
+      "id": 30,
+      "question": "Jedan kilobajt ima:",
+      "answer1": "1024 bita",
+      "answer2": "1024 bajta",
+      "answer3": "1000 herca",
+      "answer4": "1024 herca",
+      "correctAnswer": "B"
+    }
+  ],
+  "users": [
+    {
+      "id": "123Abc",
+      "username": "emili@gmail.com",
+      "password": "123Abc",
+      "name": "Emilija",
+      "surname": "Tomovic"
+    },
+    {
+      "id": "Jkdaf2",
+      "username": "emilija@gmail.com",
+      "password": "123Abc",
+      "name": "Ema",
+      "surname": "Tomovic"
+    },
+    {
+      "name": "Ema",
+      "surname": "Emic",
+      "username": "ema@gmail.com",
+      "password": "123456",
+      "id": "H5v5-Zd"
+    },
+    {
+      "name": "Ilija",
+      "surname": "Ilijic",
+      "username": "ilija@gmail.com",
+      "password": "123Abc",
+      "id": "5A59QtD"
+    }
+  ],
+  "results": [
+    {
+      "date": "Sat Oct 05 2019 17:42:02 GMT+0200 (Central European Summer Time)",
+      "score": 3,
+      "username": "emilija@gmail.com",
+      "id": 15
+    },
+    {
+      "date": "Sat Oct 05 2019 18:01:39 GMT+0200 (Central European Summer Time)",
+      "score": 31,
+      "username": "emilija@gmail.com",
+      "id": 16
+    },
+    {
+      "date": "Sat Oct 05 2019 18:44:58 GMT+0200 (Central European Summer Time)",
+      "score": 3,
+      "username": "emilija@gmail.com",
+      "id": 17
+    },
+    {
+      "date": "Sun Oct 06 2019 00:47:17 GMT+0200 (Central European Summer Time)",
+      "score": 4,
+      "username": "emilija@gmail.com",
+      "id": 18
+    },
+    {
+      "date": "Sun Oct 06 2019 10:14:17 GMT+0200 (Central European Summer Time)",
+      "score": 1,
+      "username": "emili@gmail.com",
+      "id": 19
+    },
+    {
+      "date": "Sun Oct 06 2019 10:14:59 GMT+0200 (Central European Summer Time)",
+      "score": 3,
+      "username": "emili@gmail.com",
+      "id": 20
+    },
+    {
+      "date": "Sun Oct 06 2019 13:54:59 GMT+0200 (Central European Summer Time)",
+      "score": 6,
+      "username": "ilija@gmail.com",
+      "id": 21
+    },
+    {
+      "date": "Sun Oct 06 2019 13:55:38 GMT+0200 (Central European Summer Time)",
+      "score": 10,
+      "username": "ilija@gmail.com",
+      "id": 22
+    },
+    {
+      "date": "Sun Oct 06 2019 21:01:34 GMT+0200 (Central European Summer Time)",
+      "score": 10,
+      "username": "emilija@gmail.com",
+      "id": 23
+    }
+  ]
+}
