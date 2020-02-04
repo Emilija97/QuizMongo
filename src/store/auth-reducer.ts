@@ -16,12 +16,11 @@ import {
   REGISTER_FAILURE,
   RegisterSuccess,
   RegisterFailure,
-  ME_FROM_TOKEN,
   ME_FROM_TOKEN_SUCCESS,
   ME_FROM_TOKEN_FAILURE,
-  MeFromToken,
   MeFromTokenSuccess,
-  MeFromTokenFailure
+  MeFromTokenFailure,
+  RESET_TOKEN
 } from "./actions";
 
 export interface AuthState {
@@ -115,7 +114,15 @@ export function authReducer(state = initialState, action: Action) {
     }
     case LOGOUT: {
       localStorage.removeItem("token");
-      return initialState;
+      return {
+        ...state,
+        token: "",
+        user: null,
+        isAuthenticated: false,
+        isLoading: false,
+        errorMessage: "",
+        registered: false
+      };
     }
     case REGISTER_SUCCESS: {
       const { payload } = action as RegisterSuccess;
@@ -183,6 +190,16 @@ export function authReducer(state = initialState, action: Action) {
         registered: false
       };
     }
+    case RESET_TOKEN: // remove token from storage make loading = false
+      return {
+        ...state,
+        token: "",
+        user: null,
+        isAuthenticated: false,
+        isLoading: false,
+        errorMessage: "",
+        registered: false
+      };
     default: {
       return state;
     }

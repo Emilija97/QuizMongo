@@ -124,6 +124,8 @@ export interface MeFromTokenSuccess extends Action {
 export interface MeFromTokenFailure extends Action {
   errorMessage: string;
 }
+
+export interface ResetToken extends Action {}
 export function fetchQuestions(): FetchQuestions {
   return {
     type: FETCH_QUESTIONS
@@ -302,5 +304,12 @@ export function meFromTokenFailure(errorMessage: string): MeFromTokenFailure {
   return {
     type: ME_FROM_TOKEN_FAILURE,
     errorMessage
+  };
+}
+
+export function resetToken(): ResetToken {
+  //used for logout
+  return {
+    type: RESET_TOKEN
   };
 }
