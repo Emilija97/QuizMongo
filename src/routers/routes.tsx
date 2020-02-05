@@ -9,6 +9,7 @@ import ChosenNumber from "../components/ChosenNumber";
 import ShowResults from "../components/ShowResults";
 import LoginPage from "../components/LoginPage";
 import Register from "../components/Register";
+import PaginationComponent from "../components/PaginationComponent";
 
 export const Routes = () => (
   <Switch>
@@ -21,6 +22,7 @@ export const Routes = () => (
     <Route path={"/SelectedQuestion"} component={SelectedQuestion} />
     <Route path={"/AddDeleteQuestion"} component={AddDeleteQuestion} />
     <Route path={"/ChosenNumber"} component={ChosenNumber} />
+    <Route path={"/PaginationComponent"} component={PaginationComponent} />
     <Redirect to={"/"} />
   </Switch>
 );

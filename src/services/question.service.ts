@@ -13,6 +13,7 @@ export function postNewQuestion(question: Question) {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
+      id: question.id,
       question: question.question,
       answer1: question.answer1,
       answer2: question.answer2,
@@ -23,7 +24,7 @@ export function postNewQuestion(question: Question) {
   }).then(response => response.json());
 }
 
-export function deleteQuestionFromApi(questionId: number) {
+export function deleteQuestionFromApi(questionId: string) {
   console.log("Usao sam u service i moj id je: " + questionId);
   return fetch(`${env.url}/questions/${questionId}`, {
     method: "DELETE"
@@ -33,12 +34,26 @@ export function deleteQuestionFromApi(questionId: number) {
 }
 
 export function getNumberOfQuestions(questionNumber: number) {
-  return fetch(`${env.url}/questions`)
+  console.log("Pribavljam");
+  return fetch(`${env.url}/questions/${questionNumber}`)
     .then(response => response.json())
-    .then(response =>
-      response.slice(
-        questionNumber === 0 ? questionNumber : questionNumber - 1,
-        questionNumber + 9
-      )
-    );
+    .catch(error => console.log(error));
+  // .then(response =>
+  //   response.slice(
+  //     questionNumber === 0 ? questionNumber : questionNumber - 1,
+  //     questionNumber + 9
+  //   )
+  // );
 }
+
+// export function loadPageQuestions(){
+//   const params = new URLSearchParams(location.search);
+//     const page = parseInt(params.get('page')) || 1;
+//     if (page !== pager.currentPage) {
+//         fetch(`/api/items?page=${page}`, { method: 'GET' })
+//             .then(response => response.json())
+//             .then(({pager, pageOfItems}) => {
+//                 this.setState({ pager, pageOfItems });
+//             });
+//     }
+// }

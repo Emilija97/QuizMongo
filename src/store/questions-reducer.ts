@@ -9,24 +9,24 @@ import {
   DeleteQuestion
 } from "./actions";
 
-const initialState: Question[] = [
-  {
-    id: 100,
-    question: "List kog drveta se nalazi na zastavi Kanade?",
-    answer1: "Javor",
-    answer2: "Hrast",
-    answer3: "Kesten",
-    answer4: "Ginko",
-    correctAnswer: "A"
-  }
-];
+// const initialState: Question[] = [
+//   {
+//     id: "100",
+//     question: "List kog drveta se nalazi na zastavi Kanade?",
+//     answer1: "Javor",
+//     answer2: "Hrast",
+//     answer3: "Kesten",
+//     answer4: "Ginko",
+//     correctAnswer: "A"
+//   }
+// ];
 
-// const initialState: Question[] = [];
+const initialState: Question[] = [];
 export function questionsReducer(state: Question[] = initialState, action: Action) {
   switch (action.type) {
     case ADD_QUESTIONS: {
       const { questions } = action as AddQuestions;
-      //da napravi random niz koji ucita iz json-a
+      //da napravi random niz koji ucita iz baze
       questions.sort(function() {
         return 0.5 - Math.random();
       });

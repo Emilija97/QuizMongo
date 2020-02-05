@@ -37,6 +37,9 @@ export const ME_FROM_TOKEN_SUCCESS = "ME_FROM_TOKEN_SUCCESS";
 export const ME_FROM_TOKEN_FAILURE = "ME_FROM_TOKEN_FAILURE";
 export const RESET_TOKEN = "RESET_TOKEN";
 
+//Pagination
+export const LOAD_PAGE = "LOAD PAGE";
+
 export interface FetchQuestions extends Action {}
 export interface AddQuestions extends Action {
   questions: Question[];
@@ -48,10 +51,10 @@ export interface AddQuestion extends Action {
   question: Question;
 }
 export interface DeleteQuestion extends Action {
-  questionId: number;
+  questionId: string;
 }
 export interface DeleteQuestionSaga extends Action {
-  questionId: number;
+  questionId: string;
 }
 export interface FetchNumberOfQuestions extends Action {}
 export interface FetchNewQuestion extends Action {
@@ -126,6 +129,8 @@ export interface MeFromTokenFailure extends Action {
 }
 
 export interface ResetToken extends Action {}
+
+export interface LoadPage extends Action {}
 export function fetchQuestions(): FetchQuestions {
   return {
     type: FETCH_QUESTIONS
@@ -149,13 +154,13 @@ export function addQuestion(question: Question): AddQuestion {
     question
   };
 }
-export function deleteQuestion(questionId: number): DeleteQuestion {
+export function deleteQuestion(questionId: string): DeleteQuestion {
   return {
     type: DELETE_QUESTION,
     questionId
   };
 }
-export function deleteQuestionSaga(questionId: number): DeleteQuestionSaga {
+export function deleteQuestionSaga(questionId: string): DeleteQuestionSaga {
   return {
     type: DELETE_QUESTION_SAGA,
     questionId
@@ -311,5 +316,11 @@ export function resetToken(): ResetToken {
   //used for logout
   return {
     type: RESET_TOKEN
+  };
+}
+
+export function loadPage(): LoadPage {
+  return {
+    type: LOAD_PAGE
   };
 }

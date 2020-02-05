@@ -42,11 +42,6 @@ router.post("/", (req, res, next) => {
 router.delete("/:id", (req, res, next) => {
     const id = req.params.id;
     console.log(id);
-    // ResultModel.remove({ id: mongodb.ObjectID(req.params.id) }, (err, result) => {
-    //     if (err) return console.log(err);
-    //     console.log(req.body);
-    //     res.redirect("/");
-    // });
     ResultModel.deleteOne({ id: id })
         .then(result => {
             console.log(result);
@@ -59,10 +54,6 @@ router.delete("/:id", (req, res, next) => {
                 error: error
             });
         });
-
-    // Item.findById(req.params.id)
-    //     .then(item => item.remove().then(() => res.json({ success: true })))
-    //     .catch(err => res.status(404).json({ success: false }));
 });
 
 module.exports = router;

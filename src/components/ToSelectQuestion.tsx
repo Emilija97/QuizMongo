@@ -106,7 +106,4 @@ function mapDispatchToProps(dispatch: Dispatch<Action>) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ToSelectQuestion);
+export default connect(mapStateToProps, mapDispatchToProps)(ToSelectQuestion);

@@ -6,6 +6,7 @@ import { Action } from "redux";
 import { fetchQuestions, deleteQuestionSaga, fetchNewQuestion } from "../store/actions";
 // import "../styles/AddDelete.css";
 import QuestionCounter from "./QuestionCounter";
+import uuid from "uuid";
 
 interface Props {
   questions: Question[];
@@ -40,7 +41,7 @@ class AddDeleteQuestion extends Component<Props, State> {
 
   componentDidMount() {
     //da ne bi doslo do ucitavanja istih pitanja vise puta, nego da moze sa bilo koje stranice
-    if (this.props.questions.length === 1) this.props.fetchQuestions();
+    if (this.props.questions.length === 0) this.props.fetchQuestions();
   }
   render() {
     if (!this.props.questions) {
@@ -142,7 +143,7 @@ class AddDeleteQuestion extends Component<Props, State> {
               className="addBtn btn btn-info"
               onClick={() => {
                 const question: Question = {
-                  id: Math.random() * 100,
+                  id: uuid.v4().toString(),
                   question: this.state.question,
                   answer1: this.state.answer1,
                   answer2: this.state.answer2,
@@ -173,11 +174,8 @@ function mapDispatchToProps(dispatch: Dispatch<Action>) {
   return {
     fetchQuestions: () => dispatch(fetchQuestions()),
     fetchNewQuestion: (question: Question) => dispatch(fetchNewQuestion(question)),
-    deleteQuestionSaga: (questionId: number) => dispatch(deleteQuestionSaga(questionId))
+    deleteQuestionSaga: (questionId: string) => dispatch(deleteQuestionSaga(questionId))
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AddDeleteQuestion);
+export default connect(mapStateToProps, mapDispatchToProps)(AddDeleteQuestion);

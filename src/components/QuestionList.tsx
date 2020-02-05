@@ -19,7 +19,7 @@ interface Props {
 }
 
 interface State {
-  id: number;
+  id: string;
   question: string;
   answer1: string;
   answer2: string;
@@ -33,7 +33,7 @@ interface State {
 }
 
 const initialState = {
-  id: -1,
+  id: "",
   question: "",
   answer1: "",
   answer2: "",
@@ -57,7 +57,7 @@ class QuestionList extends Component<Props, State> {
   }
 
   componentDidMount() {
-    if (this.props.questions.length === 1) {
+    if (this.props.questions.length === 0) {
       this.props.fetchQuestions();
     }
     this.pushData(this.state.recently);

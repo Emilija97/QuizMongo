@@ -7,6 +7,7 @@ import { Result } from "../models/Result";
 import { resultReducer } from "./result-reducer";
 import { User } from "../models/User";
 import { authReducer, AuthState } from "./auth-reducer";
+import { Paginate } from "../models/Paginate";
 
 export interface AppState {
   questions: Question[];
@@ -14,6 +15,7 @@ export interface AppState {
   questionList: Question[];
   results: Result[];
   auth: AuthState;
+  pager: Paginate;
 }
 
 export const rootReducer = combineReducers({

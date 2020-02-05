@@ -1,7 +1,7 @@
 const mongo = require("mongoose");
 
 const question = mongo.Schema({
-    id: Number,
+    id: String,
     question: String,
     answer1: String,
     answer2: String,

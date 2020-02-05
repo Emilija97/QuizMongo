@@ -55,7 +55,7 @@ import {
   getUserByToken
 } from "../services/auth.service";
 import { User } from "../models/User";
-let offset = 0;
+let offset = 1;
 
 function* fetchQuestions() {
   const questions = yield getAllQuestions();
@@ -64,8 +64,9 @@ function* fetchQuestions() {
 
 function* fetchNumberOfQuestions() {
   const questionList = yield getNumberOfQuestions(offset);
+  console.log(questionList);
   yield put(addNumQuestions(questionList));
-  offset += 10;
+  offset++;
 }
 
 function* fetchNewQuestion(action: FetchNewQuestion) {

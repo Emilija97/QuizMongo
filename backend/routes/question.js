@@ -4,8 +4,8 @@ const router = express.Router();
 // Question Model
 const QuestionModel = require("../models/question");
 
-// @route   GET api/items
-// @desc    Get All Items
+// @route   GET questions
+// @desc    Get All Questions
 // @access  Public
 router.get("/", (req, res, next) => {
     console.log("Usao sam");
@@ -23,6 +23,7 @@ router.get("/", (req, res, next) => {
 router.post("/", (req, res, next) => {
     console.log("Username ");
     const newQuestion = new QuestionModel({
+        id: req.body.id,
         question: req.body.question,
         answer1: req.body.answer1,
         answer2: req.body.answer2,
@@ -37,13 +38,41 @@ router.post("/", (req, res, next) => {
     });
 });
 
-// // @route   DELETE api/items/:id
-// // @desc    Delete A Item
-// // @access  Private
-// router.delete("/:id", auth, (req, res) => {
-//     Item.findById(req.params.id)
-//         .then(item => item.remove().then(() => res.json({ success: true })))
-//         .catch(err => res.status(404).json({ success: false }));
-// });
+// @route   DELETE questions/:id
+// @desc    Delete A Question
+// @access  Public
+router.delete("/:id", (req, res, next) => {
+    const id = req.params.id;
+    console.log(id);
+    QuestionModel.deleteOne({ id: id })
+        .then(result => {
+            console.log(result);
+            res.status(200).json({
+                message: "Deleted!"
+            });
+        })
+        .catch(error => {
+            res.status(400).json({
+                error: error
+            });
+        });
+});
+
+// @route   GET questions/:page
+// @desc    Get A Specific Number Of Question
+// @access  Public
+router.get("/:page", (req, res, next) => {
+    var perPage = 3;
+    var page = req.params.page || 1;
+    console.log(page);
+    QuestionModel.find({})
+        .skip(perPage * page - perPage)
+        .limit(perPage)
+        .then(questions => {
+            console.log(questions);
+            const data = questions;
+            res.status(200).json(data);
+        });
+});
 
 module.exports = router;
