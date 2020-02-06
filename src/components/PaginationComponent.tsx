@@ -3,23 +3,37 @@ import { Link } from "react-router-dom";
 import { AppState } from "../store";
 import { Action } from "redux";
 import { connect } from "react-redux";
+import { Pagination } from "react-bootstrap";
 
 interface Props {}
 
 interface State {
-  pager: any;
-  pageOfItems: number[];
+  active: number;
+  items: any[];
 }
 
 class PaginationComponent extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-
+  
     this.state = {
-      pager: {},
-      pageOfItems: []
+      active: 1,
+      items: []
     };
+
+    this.fillItems();
   }
+
+  fillItems(){
+    let i:number;
+      for (i = 1; i <= 5; i++) {
+      this.state.items.push(
+           <Pagination.Item key={i} active={i === this.state.active}>
+              {i}
+          </Pagination.Item>
+      );
+  }
+}
 
   componentDidMount() {
     // this.loadPage();
@@ -44,73 +58,24 @@ class PaginationComponent extends Component<Props, State> {
   //   }
 
   render() {
-    const { pager, pageOfItems } = this.state;
     return (
       <div className="container">
-        <div className="card-footer pb-0 pt-3">
-          {pager.pages && pager.pages.length && (
-            <ul className="pagination">
-              <li
-                className={`page-item first-item ${
-                  pager.currentPage === 1 ? "disabled" : ""
-                }`}
-              >
-                <Link to={{ search: `?page=1` }} className="page-link">
-                  First
-                </Link>
-              </li>
-              <li
-                className={`page-item previous-item ${
-                  pager.currentPage === 1 ? "disabled" : ""
-                }`}
-              >
-                <Link
-                  to={{ search: `?page=${pager.currentPage - 1}` }}
-                  className="page-link"
-                >
-                  Previous
-                </Link>
-              </li>
-              {pager.pages.map((page: number) => (
-                <li
-                  key={page}
-                  className={`page-item number-item ${
-                    pager.currentPage === page ? "active" : ""
-                  }`}
-                >
-                  <Link to={{ search: `?page=${page}` }} className="page-link">
-                    {page}
-                  </Link>
-                </li>
-              ))}
-              <li
-                className={`page-item next-item ${
-                  pager.currentPage === pager.totalPages ? "disabled" : ""
-                }`}
-              >
-                <Link
-                  to={{ search: `?page=${pager.currentPage + 1}` }}
-                  className="page-link"
-                >
-                  Next
-                </Link>
-              </li>
-              <li
-                className={`page-item last-item ${
-                  pager.currentPage === pager.totalPages ? "disabled" : ""
-                }`}
-              >
-                <Link to={{ search: `?page=${pager.totalPages}` }} className="page-link">
-                  Last
-                </Link>
-              </li>
-            </ul>
-          )}
-        </div>
-      </div>
-    );
+
+
+  <div>
+    <Pagination>{this.state.items}</Pagination>
+    <br />
+
+    <Pagination size="lg">{this.state.items}</Pagination>
+    <br />
+
+    <Pagination size="sm">{this.state.items}</Pagination>
+  </div>
+  </div>
+      )
+
+    }
   }
-}
 function mapStateToProps(state: AppState) {
   return {};
 }

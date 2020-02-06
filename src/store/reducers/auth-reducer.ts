@@ -5,8 +5,6 @@ import {
   LogInSuccess,
   LOGIN_FAILURE,
   LogInFailure,
-  CHECK_USER,
-  CheckUser,
   CHECK_USER_SUCCESS,
   CheckUserSuccess,
   CHECK_USER_FAILURE,

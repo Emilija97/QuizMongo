@@ -1,41 +1,4 @@
-import { all, takeEvery, put, take } from "redux-saga/effects";
-// import {
-//   FETCH_QUESTIONS,
-//   addQuestions,
-//   FETCH_NUMQUESTIONS,
-//   addNumQuestions,
-//   addQuestion,
-//   FETCH_NEW_QUESTION,
-//   FetchNewQuestion,
-//   DeleteQuestionSaga,
-//   DELETE_QUESTION_SAGA,
-//   deleteQuestion,
-//   SaveResult,
-//   saveResultSuccess,
-//   SAVE_RESULT,
-//   FetchResults,
-//   addResults,
-//   FETCH_RESULTS,
-//   DeleteResult,
-//   deleteResultSuccess,
-//   DELETE_RESULT,
-//   LogIn,
-//   LOGIN,
-//   logInSuccess,
-//   logInFailure,
-//   CheckUser,
-//   checkUserSuccess,
-//   checkUserFailure,
-//   CHECK_USER,
-//   Register,
-//   REGISTER,
-//   registerFailure,
-//   registerSuccess,
-//   MeFromToken,
-//   meFromTokenSuccess,
-//   meFromTokenFailure,
-//   ME_FROM_TOKEN
-// } from "./actions";
+import { all, takeEvery, put } from "redux-saga/effects";
 import {
   getAllQuestions,
   getNumberOfQuestions,
@@ -51,10 +14,8 @@ import {
   logInUser,
   getUserById,
   registerUser,
-  getAllUsers,
   getUserByToken
 } from "../services/auth.service";
-import { User } from "../models/User";
 import { addQuestions, addNumQuestions, FetchNewQuestion, addQuestion, DeleteQuestionSaga, deleteQuestion, FETCH_QUESTIONS, FETCH_NUMQUESTIONS, FETCH_NEW_QUESTION, DELETE_QUESTION_SAGA } from "./actions/questions";
 import { SaveResult, saveResultSuccess, FetchResults, addResults, DeleteResult, deleteResultSuccess, SAVE_RESULT, FETCH_RESULTS, DELETE_RESULT } from "./actions/results";
 import { LogIn, logInSuccess, logInFailure, CheckUser, checkUserSuccess, checkUserFailure, Register, registerSuccess, registerFailure, MeFromToken, meFromTokenSuccess, meFromTokenFailure, LOGIN, CHECK_USER, REGISTER, ME_FROM_TOKEN } from "./actions/users";
@@ -110,7 +71,7 @@ function* logIn(action: LogIn) {
   const res = yield logInUser(username, password);
   yield logInUser(username, password).then(res => {
     console.log(res);
-    if (res.msg != "User Does not exist") {
+    if (res.msg !== "User Does not exist") {
       tmp = true;
     }
   });
@@ -136,7 +97,7 @@ function* register(action: Register) {
   const user = action.user;
   let tmp = false;
   yield registerUser(user).then(res => {
-    if (res.msg != "User already exists") tmp = true;
+    if (res.msg !== "User already exists") tmp = true;
   });
   if (tmp) {
     yield put(registerSuccess(user));

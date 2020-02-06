@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Color } from "csstype";
 import { Question } from "../models/Question";
 // import "../styles/QuestionList.css";
 

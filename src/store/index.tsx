@@ -5,7 +5,6 @@ import { selectedQuestionReducer } from "./reducers/selected-question.reducer";
 import { toSelectReducer } from "./reducers/toselect-reducer";
 import { Result } from "../models/Result";
 import { resultReducer } from "./reducers/result-reducer";
-import { User } from "../models/User";
 import { authReducer, AuthState } from "./reducers/auth-reducer";
 
 export interface AppState {

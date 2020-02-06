@@ -4,10 +4,8 @@ import { AppState } from "../store";
 import { Action } from "redux";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/users";
-import { authReducer, AuthState } from "../store/reducers/auth-reducer";
+import { AuthState } from "../store/reducers/auth-reducer";
 import { Link, Redirect } from "react-router-dom";
-import { userInfo } from "os";
-import { timingSafeEqual } from "crypto";
 
 interface Props {
   register: Function;
