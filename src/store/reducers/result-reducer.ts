@@ -6,8 +6,8 @@ import {
   AddResults,
   DELETE_RESULT_SUCCESS,
   DeleteResult
-} from "./actions";
-import { Result } from "../models/Result";
+} from "../actions/results";
+import { Result } from "../../models/Result";
 
 const initialState: Result[] = [];
 

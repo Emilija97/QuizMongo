@@ -3,11 +3,12 @@ import { Link, Redirect } from "react-router-dom";
 import { Question } from "../models/Question";
 import { AppState } from "../store";
 import { Action } from "redux";
-import { fetchQuestions, fetchResults, logOut } from "../store/actions";
 import { connect } from "react-redux";
 // import "../styles/HomePage.css";
 import { Result } from "../models/Result";
-import { AuthState } from "../store/auth-reducer";
+import { AuthState } from "../store/reducers/auth-reducer";
+import { fetchQuestions } from "../store/actions/questions";
+import { fetchResults } from "../store/actions/results";
 
 interface Props {
   questions: Question[];

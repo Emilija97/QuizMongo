@@ -3,12 +3,12 @@ import { Question } from "../models/Question";
 import { AppState } from "../store";
 import { connect } from "react-redux";
 import MojeDugme from "./Button";
-import * as actions from "../store/actions";
+import * as actions from "../store/actions/questions";
 // import "../styles/QuestionList.css";
 import { Action } from "redux";
 import QuestionCounter from "./QuestionCounter";
 import Popup from "./Forma";
-import { AuthState } from "../store/auth-reducer";
+import { AuthState } from "../store/reducers/auth-reducer";
 
 interface Props {
   questions: Question[];

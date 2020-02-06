@@ -1,4 +1,4 @@
-import { Question } from "../models/Question";
+import { Question } from "../../models/Question";
 import { Action } from "redux";
 import {
   ADD_QUESTIONS,
@@ -7,7 +7,7 @@ import {
   AddQuestion,
   DELETE_QUESTION,
   DeleteQuestion
-} from "./actions";
+} from "../actions/questions";
 
 // const initialState: Question[] = [
 //   {

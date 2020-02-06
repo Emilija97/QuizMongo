@@ -1,13 +1,12 @@
 import { Question } from "../models/Question";
 import { combineReducers } from "redux";
-import { questionsReducer } from "./questions-reducer";
-import { selectedQuestionReducer } from "./selected-question.reducer";
-import { toSelectReducer } from "./toselect-reducer";
+import { questionsReducer } from "./reducers/questions-reducer";
+import { selectedQuestionReducer } from "./reducers/selected-question.reducer";
+import { toSelectReducer } from "./reducers/toselect-reducer";
 import { Result } from "../models/Result";
-import { resultReducer } from "./result-reducer";
+import { resultReducer } from "./reducers/result-reducer";
 import { User } from "../models/User";
-import { authReducer, AuthState } from "./auth-reducer";
-import { Paginate } from "../models/Paginate";
+import { authReducer, AuthState } from "./reducers/auth-reducer";
 
 export interface AppState {
   questions: Question[];
@@ -15,7 +14,6 @@ export interface AppState {
   questionList: Question[];
   results: Result[];
   auth: AuthState;
-  pager: Paginate;
 }
 
 export const rootReducer = combineReducers({

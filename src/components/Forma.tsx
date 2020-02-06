@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 import { AppState } from "../store";
 import { Action } from "redux";
 import { Result } from "../models/Result";
-import * as actions from "../store/actions";
-import { AuthState } from "../store/auth-reducer";
+import * as actions from "../store/actions/results";
+import { AuthState } from "../store/reducers/auth-reducer";
 import uuid from "uuid";
 
 interface Props {

@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import { SELECT_QUESTION, SelectQuestion } from "./actions";
+import { SELECT_QUESTION, SelectQuestion } from "../actions/questions";
 
 export function selectedQuestionReducer(state = {}, action: Action) {
   switch (action.type) {

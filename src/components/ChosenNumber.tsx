@@ -3,7 +3,7 @@ import { Question } from "../models/Question";
 import { AppState } from "../store";
 import { connect } from "react-redux";
 import { Action } from "redux";
-import { fetchQuestions } from "../store/actions";
+import { fetchQuestions } from "../store/actions/questions";
 import QuestionCounter from "./QuestionCounter";
 import QuestionList from "./QuestionList";
 import { Redirect } from "react-router";

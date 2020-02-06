@@ -1,9 +1,9 @@
 import React, { Component, Dispatch } from "react";
 import { AppState } from "../store";
 import { connect } from "react-redux";
-import { fetchResults } from "../store/actions";
+import { fetchResults } from "../store/actions/results";
 import { Action } from "redux";
-import * as actions from "../store/actions";
+import * as actions from "../store/actions/results";
 // import "../styles/ToSelectQuestion.css";
 import { Redirect } from "react-router";
 import { Result } from "../models/Result";

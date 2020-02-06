@@ -1,4 +1,4 @@
-import { User } from "../models/User";
+import { User } from "../../models/User";
 import { Action } from "redux";
 import {
   LOGIN_SUCCESS,
@@ -21,7 +21,7 @@ import {
   MeFromTokenSuccess,
   MeFromTokenFailure,
   RESET_TOKEN
-} from "./actions";
+} from "../actions/users";
 
 export interface AuthState {
   user: User;

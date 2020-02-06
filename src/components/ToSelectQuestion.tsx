@@ -2,9 +2,9 @@ import React, { Component, Dispatch } from "react";
 import { Question } from "../models/Question";
 import { AppState } from "../store";
 import { connect } from "react-redux";
-import { selectQuestion } from "../store/actions";
+import { selectQuestion } from "../store/actions/questions";
 import { Action } from "redux";
-import * as actions from "../store/actions";
+import * as actions from "../store/actions/questions";
 // import "../styles/ToSelectQuestion.css";
 import { Redirect } from "react-router";
 

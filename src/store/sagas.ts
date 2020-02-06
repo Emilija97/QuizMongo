@@ -1,41 +1,41 @@
 import { all, takeEvery, put, take } from "redux-saga/effects";
-import {
-  FETCH_QUESTIONS,
-  addQuestions,
-  FETCH_NUMQUESTIONS,
-  addNumQuestions,
-  addQuestion,
-  FETCH_NEW_QUESTION,
-  FetchNewQuestion,
-  DeleteQuestionSaga,
-  DELETE_QUESTION_SAGA,
-  deleteQuestion,
-  SaveResult,
-  saveResultSuccess,
-  SAVE_RESULT,
-  FetchResults,
-  addResults,
-  FETCH_RESULTS,
-  DeleteResult,
-  deleteResultSuccess,
-  DELETE_RESULT,
-  LogIn,
-  LOGIN,
-  logInSuccess,
-  logInFailure,
-  CheckUser,
-  checkUserSuccess,
-  checkUserFailure,
-  CHECK_USER,
-  Register,
-  REGISTER,
-  registerFailure,
-  registerSuccess,
-  MeFromToken,
-  meFromTokenSuccess,
-  meFromTokenFailure,
-  ME_FROM_TOKEN
-} from "./actions";
+// import {
+//   FETCH_QUESTIONS,
+//   addQuestions,
+//   FETCH_NUMQUESTIONS,
+//   addNumQuestions,
+//   addQuestion,
+//   FETCH_NEW_QUESTION,
+//   FetchNewQuestion,
+//   DeleteQuestionSaga,
+//   DELETE_QUESTION_SAGA,
+//   deleteQuestion,
+//   SaveResult,
+//   saveResultSuccess,
+//   SAVE_RESULT,
+//   FetchResults,
+//   addResults,
+//   FETCH_RESULTS,
+//   DeleteResult,
+//   deleteResultSuccess,
+//   DELETE_RESULT,
+//   LogIn,
+//   LOGIN,
+//   logInSuccess,
+//   logInFailure,
+//   CheckUser,
+//   checkUserSuccess,
+//   checkUserFailure,
+//   CHECK_USER,
+//   Register,
+//   REGISTER,
+//   registerFailure,
+//   registerSuccess,
+//   MeFromToken,
+//   meFromTokenSuccess,
+//   meFromTokenFailure,
+//   ME_FROM_TOKEN
+// } from "./actions";
 import {
   getAllQuestions,
   getNumberOfQuestions,
@@ -55,6 +55,9 @@ import {
   getUserByToken
 } from "../services/auth.service";
 import { User } from "../models/User";
+import { addQuestions, addNumQuestions, FetchNewQuestion, addQuestion, DeleteQuestionSaga, deleteQuestion, FETCH_QUESTIONS, FETCH_NUMQUESTIONS, FETCH_NEW_QUESTION, DELETE_QUESTION_SAGA } from "./actions/questions";
+import { SaveResult, saveResultSuccess, FetchResults, addResults, DeleteResult, deleteResultSuccess, SAVE_RESULT, FETCH_RESULTS, DELETE_RESULT } from "./actions/results";
+import { LogIn, logInSuccess, logInFailure, CheckUser, checkUserSuccess, checkUserFailure, Register, registerSuccess, registerFailure, MeFromToken, meFromTokenSuccess, meFromTokenFailure, LOGIN, CHECK_USER, REGISTER, ME_FROM_TOKEN } from "./actions/users";
 let offset = 1;
 
 function* fetchQuestions() {

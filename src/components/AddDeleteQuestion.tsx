@@ -3,7 +3,7 @@ import { Question } from "../models/Question";
 import { AppState } from "../store";
 import { connect } from "react-redux";
 import { Action } from "redux";
-import { fetchQuestions, deleteQuestionSaga, fetchNewQuestion } from "../store/actions";
+import { fetchQuestions, deleteQuestionSaga, fetchNewQuestion } from "../store/actions/questions";
 // import "../styles/AddDelete.css";
 import QuestionCounter from "./QuestionCounter";
 import uuid from "uuid";

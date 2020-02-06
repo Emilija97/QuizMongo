@@ -1,6 +1,6 @@
 import { Action } from "redux";
-import { ADD_NUMQUESTIONS, AddNumQuestions } from "./actions";
-import { Question } from "../models/Question";
+import { ADD_NUMQUESTIONS, AddNumQuestions } from "../actions/questions";
+import { Question } from "../../models/Question";
 
 const initialState: Question[] = [];
 

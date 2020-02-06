@@ -8,7 +8,7 @@ import { createBrowserHistory } from "history";
 import { Routes } from "./routers/routes";
 import createSagaMiddleware from "@redux-saga/core";
 import { rootSaga } from "./store/sagas";
-import { checkUser, meFromToken } from "./store/actions";
+import { meFromToken } from "./store/actions/users";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/Home.css";
 
