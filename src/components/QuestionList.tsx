@@ -29,7 +29,7 @@ interface State {
   recently: number;
   score: number;
   showPopup: boolean;
-  flagGame: boolean;
+  isLoading: boolean;
 }
 
 const initialState = {
@@ -43,7 +43,7 @@ const initialState = {
   recently: 0,
   score: 0,
   showPopup: false,
-  flagGame: false
+  isLoading: false
 };
 
 class QuestionList extends Component<Props, State> {
@@ -155,60 +155,70 @@ class QuestionList extends Component<Props, State> {
   }
 
   render() {
-    let { recently, question, answer1, answer2, answer3, answer4, id } = this.state;
-
     if (!this.props.questions) {
       return <h3>No questions</h3>;
     }
+    let { recently, question, answer1, answer2, answer3, answer4, id } = this.state;
     return (
       <div
         className="maliDiv d-flex flex-column align-content-center col-sm-4 offset-sm-4 py-5"
         key={id}
       >
-        <p className="question mb-0 font-weight-bold">{question}</p>
-        {this.prikazi()}
-        <div id="dugmad" className="d-flex flex-column">
-          <MojeDugme
-            increaseScore={this.handleIncreaseScore}
-            question={this.props.questions[recently - 1]}
-            naslov={answer1}
-            flagGame={this.props.flag}
-            togglePopup={this.togglePopup}
-            answer="A"
-          />
-          <MojeDugme
-            increaseScore={this.handleIncreaseScore}
-            question={this.props.questions[recently - 1]}
-            naslov={answer2}
-            flagGame={this.props.flag}
-            togglePopup={this.togglePopup}
-            answer="B"
-          />
-          <MojeDugme
-            increaseScore={this.handleIncreaseScore}
-            question={this.props.questions[recently - 1]}
-            naslov={answer3}
-            flagGame={this.props.flag}
-            togglePopup={this.togglePopup}
-            answer="C"
-          />
-          <MojeDugme
-            increaseScore={this.handleIncreaseScore}
-            question={this.props.questions[recently - 1]}
-            naslov={answer4}
-            flagGame={this.props.flag}
-            togglePopup={this.togglePopup}
-            answer="D"
-          />
-        </div>
-        <button
-          className="next btn btn-info btn-block mt-1"
-          onClick={() => this.nextQuestion()}
-        >
-          Next
-        </button>
+        {this.state.question !== "" ? (
+          <div>
+            <p className="question mb-0 font-weight-bold">{question}</p>
+            {this.prikazi()}
+            <div id="dugmad" className="d-flex flex-column">
+              <MojeDugme
+                increaseScore={this.handleIncreaseScore}
+                question={this.props.questions[recently - 1]}
+                naslov={answer1}
+                flagGame={this.props.flag}
+                togglePopup={this.togglePopup}
+                answer="A"
+              />
+              <MojeDugme
+                increaseScore={this.handleIncreaseScore}
+                question={this.props.questions[recently - 1]}
+                naslov={answer2}
+                flagGame={this.props.flag}
+                togglePopup={this.togglePopup}
+                answer="B"
+              />
+              <MojeDugme
+                increaseScore={this.handleIncreaseScore}
+                question={this.props.questions[recently - 1]}
+                naslov={answer3}
+                flagGame={this.props.flag}
+                togglePopup={this.togglePopup}
+                answer="C"
+              />
+              <MojeDugme
+                increaseScore={this.handleIncreaseScore}
+                question={this.props.questions[recently - 1]}
+                naslov={answer4}
+                flagGame={this.props.flag}
+                togglePopup={this.togglePopup}
+                answer="D"
+              />
+            </div>
+            <button
+              className="next btn btn-info btn-block mt-1"
+              onClick={() => this.nextQuestion()}
+            >
+              Next
+            </button>
 
-        <QuestionCounter />
+            <QuestionCounter />
+          </div>
+        ) : (
+          <button
+            className="next btn btn-info btn-block mt-1"
+            onClick={() => this.nextQuestion()}
+          >
+            Next
+          </button>
+        )}
         {/* proverava da li je showPopup true kako bi prikazao formu ili null */}
 
         {this.callPopup()}

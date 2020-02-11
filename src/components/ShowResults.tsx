@@ -25,8 +25,8 @@ class ShowResults extends Component<Props, State> {
       redirect: false
     };
 
-    this.refreshPage = this.refreshPage.bind(this);
-    this.refreshPage();
+    // this.refreshPage = this.refreshPage.bind(this);
+    // this.refreshPage();
   }
   setRedirect = () => {
     this.setState({
@@ -39,14 +39,14 @@ class ShowResults extends Component<Props, State> {
     }
   };
 
-  refreshPage() {
-    if (window.localStorage) {
-      if (!localStorage.getItem("firstLoad")) {
-        localStorage["firstLoad"] = true;
-        window.location.reload();
-      } else localStorage.removeItem("firstLoad");
-    }
-  }
+  // refreshPage() {
+  //   if (window.localStorage) {
+  //     if (!localStorage.getItem("firstLoad")) {
+  //       localStorage["firstLoad"] = true;
+  //       window.location.reload();
+  //     } else localStorage.removeItem("firstLoad");
+  //   }
+  // }
   componentDidMount() {
     if (this.props.results.length === 0) this.props.fetchResults();
   }

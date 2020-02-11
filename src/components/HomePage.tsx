@@ -18,9 +18,9 @@ interface Props {
   fetchResults: Function;
   auth: AuthState;
 }
-interface State { }
+interface State {}
 class AppRoot extends Component<Props, State> {
-  constructor(props: Props){
+  constructor(props: Props) {
     super(props);
     this.refreshPage();
   }
@@ -42,24 +42,24 @@ class AppRoot extends Component<Props, State> {
 
   render() {
     return (
-      <div
-        id="pocetna"
-        className="d-flex flex-column text-center align-content-lg-start"
-      >
-        {this.props.auth.user ?
+      <div id="pocetna" className="d-flex flex-column text-center align-content-lg-start">
+        {this.props.auth.user ? (
           <Navbar>
             <Navbar.Collapse className="justify-content-end">
               <Navbar.Text>
-                Signed in as: {this.props.auth.user.name} {this.props.auth.user.surname}
+                <h3>
+                  Signed in as: {this.props.auth.user.name} {this.props.auth.user.surname}
+                </h3>
               </Navbar.Text>
             </Navbar.Collapse>
-          </Navbar> : <Navbar>
+          </Navbar>
+        ) : (
+          <Navbar>
             <Navbar.Collapse className="justify-content-end">
-              <Navbar.Text>
-
-              </Navbar.Text>
+              <Navbar.Text></Navbar.Text>
             </Navbar.Collapse>
-          </Navbar>}
+          </Navbar>
+        )}
 
         <h2>Welcome to the QUIZ</h2>
         <div>

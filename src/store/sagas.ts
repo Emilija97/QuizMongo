@@ -3,7 +3,8 @@ import {
   getAllQuestions,
   getNumberOfQuestions,
   postNewQuestion,
-  deleteQuestionFromApi
+  deleteQuestionFromApi,
+  loadCurrentPage
 } from "../services/question.service";
 import {
   postNewResult,
@@ -14,11 +15,54 @@ import {
   logInUser,
   getUserById,
   registerUser,
-  getUserByToken
+  getUserByToken,
+  updateUser
 } from "../services/auth.service";
-import { addQuestions, addNumQuestions, FetchNewQuestion, addQuestion, DeleteQuestionSaga, deleteQuestion, FETCH_QUESTIONS, FETCH_NUMQUESTIONS, FETCH_NEW_QUESTION, DELETE_QUESTION_SAGA } from "./actions/questions";
-import { SaveResult, saveResultSuccess, FetchResults, addResults, DeleteResult, deleteResultSuccess, SAVE_RESULT, FETCH_RESULTS, DELETE_RESULT } from "./actions/results";
-import { LogIn, logInSuccess, logInFailure, CheckUser, checkUserSuccess, checkUserFailure, Register, registerSuccess, registerFailure, MeFromToken, meFromTokenSuccess, meFromTokenFailure, LOGIN, CHECK_USER, REGISTER, ME_FROM_TOKEN } from "./actions/users";
+import {
+  addQuestions,
+  addNumQuestions,
+  FetchNewQuestion,
+  addQuestion,
+  DeleteQuestionSaga,
+  deleteQuestion,
+  FETCH_QUESTIONS,
+  FETCH_NUMQUESTIONS,
+  FETCH_NEW_QUESTION,
+  DELETE_QUESTION_SAGA,
+  Paginate,
+  PAGINATE
+} from "./actions/questions";
+import {
+  SaveResult,
+  saveResultSuccess,
+  FetchResults,
+  addResults,
+  DeleteResult,
+  deleteResultSuccess,
+  SAVE_RESULT,
+  FETCH_RESULTS,
+  DELETE_RESULT
+} from "./actions/results";
+import {
+  LogIn,
+  logInSuccess,
+  logInFailure,
+  CheckUser,
+  checkUserSuccess,
+  checkUserFailure,
+  Register,
+  registerSuccess,
+  registerFailure,
+  MeFromToken,
+  meFromTokenSuccess,
+  meFromTokenFailure,
+  LOGIN,
+  CHECK_USER,
+  REGISTER,
+  ME_FROM_TOKEN,
+  Update,
+  UPDATE
+} from "./actions/users";
 let offset = 1;
 
 function* fetchQuestions() {
@@ -31,6 +75,13 @@ function* fetchNumberOfQuestions() {
   console.log(questionList);
   yield put(addNumQuestions(questionList));
   offset++;
+}
+
+function* paginate(action: Paginate) {
+  const page = action.page;
+  const questions = yield loadCurrentPage(page);
+  console.log(questions);
+  yield put(addNumQuestions(questions));
 }
 
 function* fetchNewQuestion(action: FetchNewQuestion) {
@@ -106,6 +157,12 @@ function* register(action: Register) {
   }
 }
 
+function* update(action: Update) {
+  const payload = action.payload;
+  console.log(payload);
+  yield updateUser(payload);
+}
+
 function* meFromToken(action: MeFromToken) {
   console.log("Usao sam u me from token");
   const token = action.tokenFromStorage;
@@ -134,6 +191,8 @@ export function* rootSaga() {
     takeEvery(LOGIN, logIn),
     takeEvery(CHECK_USER, checkUser),
     takeEvery(REGISTER, register),
-    takeEvery(ME_FROM_TOKEN, meFromToken)
+    takeEvery(ME_FROM_TOKEN, meFromToken),
+    takeEvery(PAGINATE, paginate),
+    takeEvery(UPDATE, update)
   ]);
 }

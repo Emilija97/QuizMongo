@@ -3,13 +3,21 @@ import { Question } from "../models/Question";
 import { AppState } from "../store";
 import { connect } from "react-redux";
 import { Action } from "redux";
-import { fetchQuestions, deleteQuestionSaga, fetchNewQuestion } from "../store/actions/questions";
+import {
+  fetchQuestions,
+  deleteQuestionSaga,
+  fetchNewQuestion,
+  paginate
+} from "../store/actions/questions";
 // import "../styles/AddDelete.css";
 import QuestionCounter from "./QuestionCounter";
 import uuid from "uuid";
+import PaginationComponent from "./PaginationComponent";
 
 interface Props {
   questions: Question[];
+  paginate: Function;
+  questionList: Question[];
   fetchQuestions: Function;
   deleteQuestionSaga: Function;
   fetchNewQuestion: Function;
@@ -23,6 +31,8 @@ interface State {
   answer3: string;
   answer4: string;
   correctAnswer: string;
+  currentPage: number;
+  flag: boolean;
 }
 const initialState = {
   id: 0,
@@ -31,7 +41,9 @@ const initialState = {
   answer2: "",
   answer3: "",
   answer4: "",
-  correctAnswer: ""
+  correctAnswer: "",
+  currentPage: 1,
+  flag: true
 };
 class AddDeleteQuestion extends Component<Props, State> {
   constructor(props: Props) {
@@ -43,6 +55,7 @@ class AddDeleteQuestion extends Component<Props, State> {
     //da ne bi doslo do ucitavanja istih pitanja vise puta, nego da moze sa bilo koje stranice
     if (this.props.questions.length === 0) this.props.fetchQuestions();
   }
+
   render() {
     if (!this.props.questions) {
       return <h1>There isn't any question to delete!</h1>;
@@ -71,6 +84,7 @@ class AddDeleteQuestion extends Component<Props, State> {
                         className="deleteBtn btn btn-info"
                         onClick={() => {
                           this.props.deleteQuestionSaga(question.id);
+                          this.setState({ flag: true });
                         }}
                       >
                         Delete
@@ -152,6 +166,7 @@ class AddDeleteQuestion extends Component<Props, State> {
                   correctAnswer: this.state.correctAnswer
                 };
                 this.props.fetchNewQuestion(question);
+                this.setState({ flag: true });
               }}
             >
               Add
@@ -166,13 +181,15 @@ class AddDeleteQuestion extends Component<Props, State> {
 
 function mapStateToProps(state: AppState) {
   return {
-    questions: state.questions
+    questions: state.questions,
+    questionList: state.questionList
   };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<Action>) {
   return {
     fetchQuestions: () => dispatch(fetchQuestions()),
+    paginate: (page: number) => dispatch(paginate(page)),
     fetchNewQuestion: (question: Question) => dispatch(fetchNewQuestion(question)),
     deleteQuestionSaga: (questionId: string) => dispatch(deleteQuestionSaga(questionId))
   };

@@ -1,81 +1,64 @@
 import React, { Dispatch, Component } from "react";
-import { Link } from "react-router-dom";
 import { AppState } from "../store";
 import { Action } from "redux";
 import { connect } from "react-redux";
-import { Pagination } from "react-bootstrap";
 
-interface Props {}
+interface Props {
+  postsPerPage: number;
+  totalPosts: number;
+  paginatePage: Function;
+}
 
 interface State {
   active: number;
   items: any[];
+  pageNumbers: number[];
 }
 
 class PaginationComponent extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-  
+    console.log(this.props.totalPosts);
     this.state = {
       active: 1,
-      items: []
+      items: [],
+      pageNumbers: []
     };
 
     this.fillItems();
   }
 
-  fillItems(){
-    let i:number;
-      for (i = 1; i <= 5; i++) {
-      this.state.items.push(
-           <Pagination.Item key={i} active={i === this.state.active}>
-              {i}
-          </Pagination.Item>
-      );
+  fillItems() {
+    console.log("U fill items sam");
+    console.log("total " + this.props.totalPosts);
+    for (
+      let i = 1;
+      i <= Math.ceil(this.props.totalPosts / this.props.postsPerPage);
+      i++
+    ) {
+      this.state.pageNumbers.push(i);
+    }
   }
-}
-
-  componentDidMount() {
-    // this.loadPage();
-  }
-
-  componentDidUpdate() {
-    // this.loadPage();
-  }
-
-  //   loadPage() {
-  //     // get page of items from api
-  //     const params = new URLSearchParams(window.location.search);
-  //     console.log(params);
-  //     const page = 1;
-  //     if (page !== this.state.pager.currentPage) {
-  //       fetch(`/api/items?page=${page}`, { method: "GET" })
-  //         .then(response => response.json())
-  //         .then(({ pager, pageOfItems }) => {
-  //           this.setState({ pager, pageOfItems });
-  //         });
-  //     }
-  //   }
 
   render() {
     return (
-      <div className="container">
-
-
-  <div>
-    <Pagination>{this.state.items}</Pagination>
-    <br />
-
-    <Pagination size="lg">{this.state.items}</Pagination>
-    <br />
-
-    <Pagination size="sm">{this.state.items}</Pagination>
-  </div>
-  </div>
-      )
-
-    }
+      <nav>
+        <ul className="pagination justify-content-center">
+          {this.state.pageNumbers.map(number => (
+            <li key={number} className="page-item">
+              <button
+                onClick={() => this.props.paginatePage(number)}
+                className="page-link"
+              >
+                {number}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    );
   }
+}
 function mapStateToProps(state: AppState) {
   return {};
 }

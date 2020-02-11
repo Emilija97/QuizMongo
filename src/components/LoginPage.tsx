@@ -10,7 +10,6 @@ interface Props {
   logIn: Function;
   auth: AuthState;
   isAuthenticated: boolean;
-  logOut: Function;
 }
 
 interface State {
@@ -30,7 +29,6 @@ class LoginPage extends Component<Props, State> {
       submitted: false
     };
 
-    this.props.logOut();
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -119,8 +117,7 @@ function mapStateToProps(state: AppState) {
 function mapDispatchToProps(dispatch: Dispatch<Action>) {
   return {
     logIn: (username: string, password: string) =>
-      dispatch(actions.logIn(username, password)),
-    logOut: () => dispatch(actions.logOut())
+      dispatch(actions.logIn(username, password))
   };
 }
 

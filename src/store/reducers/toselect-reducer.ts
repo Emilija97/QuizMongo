@@ -9,7 +9,8 @@ export function toSelectReducer(state: Question[] = initialState, action: Action
     case ADD_NUMQUESTIONS: {
       const { questionList } = action as AddNumQuestions;
       console.log(questionList.values);
-      return [...state, ...questionList];
+      state = questionList;
+      return state;
     }
     default:
       return state;

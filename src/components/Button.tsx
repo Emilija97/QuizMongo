@@ -48,6 +48,7 @@ class MojeDugme extends Component<Props, State> {
         disabled: true
       });
     } else if (this.props.flagGame === true) {
+      //if the mode of game is chosen number, we don't need popup until the end
       this.setState({
         className: "btn btn-danger btn-block",
         disabled: true

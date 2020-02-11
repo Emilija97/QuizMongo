@@ -61,7 +61,7 @@ router.post("/", (req, res, next) => {
 });
 
 // @route   GET /users
-// @desc     new user
+// @desc    Get all users
 // @access  Public
 router.get("/", (req, res, next) => {
     console.log("Usao sam");
@@ -71,6 +71,34 @@ router.get("/", (req, res, next) => {
             res.status(200).json(data);
         })
         .catch(err => console.log(err));
+});
+
+// @route   PUT /users/:id
+// @desc    Update user
+// @access  Public
+router.put("/:id", (req, res, next) => {
+    console.log("Usao sam");
+    const id = req.params.id;
+    const { name, surname, username, password } = req.body;
+    const updateUser = new UserModel({
+        id,
+        name,
+        surname,
+        username,
+        password
+    })
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(req.body.password, salt, (err, hash) => {
+            if (err) throw err;
+            req.body.password = hash;
+            UserModel.findOneAndUpdate({ username, id }, { $set: req.body })
+                .then(doc => {
+                    const data = doc;
+                    res.status(200).json(data);
+                })
+                .catch(err => console.log(err));
+        });
+    });
 });
 
 module.exports = router;

@@ -62,7 +62,7 @@ router.delete("/:id", (req, res, next) => {
 // @desc    Get A Specific Number Of Question
 // @access  Public
 router.get("/:page", (req, res, next) => {
-    var perPage = 3;
+    var perPage = 10;
     var page = req.params.page || 1;
     console.log(page);
     QuestionModel.find({})

@@ -57,3 +57,23 @@ export function registerUser(user: User) {
     .then(response => response.json())
     .catch(error => console.log(error));
 }
+
+export function updateUser(user: any) {
+  console.log(user);
+  return fetch(`${env.url}/users/${user.id}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      id: user.id,
+      name: user.name,
+      surname: user.surname,
+      username: user.username,
+      password: user.password
+    })
+  })
+    .then(response => response.json())
+    .catch(error => console.log(error));
+}

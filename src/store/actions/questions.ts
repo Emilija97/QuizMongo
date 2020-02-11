@@ -13,89 +13,100 @@ export const DELETE_QUESTION = "DELETE QUESTION";
 
 //Pagination
 export const LOAD_PAGE = "LOAD PAGE";
+export const PAGINATE = "PAGINATE";
 
-export interface FetchQuestions extends Action { }
+export interface FetchQuestions extends Action {}
 export interface AddQuestions extends Action {
-    questions: Question[];
+  questions: Question[];
 }
 export interface SelectQuestion extends Action {
-    question: Question;
+  question: Question;
 }
 export interface AddQuestion extends Action {
-    question: Question;
+  question: Question;
 }
 export interface DeleteQuestion extends Action {
-    questionId: string;
+  questionId: string;
 }
 export interface DeleteQuestionSaga extends Action {
-    questionId: string;
+  questionId: string;
 }
-export interface FetchNumberOfQuestions extends Action { }
+export interface FetchNumberOfQuestions extends Action {}
 export interface FetchNewQuestion extends Action {
-    question: Question;
+  question: Question;
 }
 export interface AddNumQuestions extends Action {
-    questionList: Question[];
+  questionList: Question[];
 }
 
-export interface LoadPage extends Action { }
+export interface LoadPage extends Action {}
+export interface Paginate extends Action {
+  page: number;
+}
 
 export function fetchQuestions(): FetchQuestions {
-    return {
-        type: FETCH_QUESTIONS
-    };
+  return {
+    type: FETCH_QUESTIONS
+  };
 }
 export function addQuestions(questions: Question[]): AddQuestions {
-    return {
-        type: ADD_QUESTIONS,
-        questions: questions
-    };
+  return {
+    type: ADD_QUESTIONS,
+    questions: questions
+  };
 }
 export function selectQuestion(question: Question): SelectQuestion {
-    return {
-        type: SELECT_QUESTION,
-        question: question
-    };
+  return {
+    type: SELECT_QUESTION,
+    question: question
+  };
 }
 export function addQuestion(question: Question): AddQuestion {
-    return {
-        type: ADD_QUESTION,
-        question
-    };
+  return {
+    type: ADD_QUESTION,
+    question
+  };
 }
 export function deleteQuestion(questionId: string): DeleteQuestion {
-    return {
-        type: DELETE_QUESTION,
-        questionId
-    };
+  return {
+    type: DELETE_QUESTION,
+    questionId
+  };
 }
 export function deleteQuestionSaga(questionId: string): DeleteQuestionSaga {
-    return {
-        type: DELETE_QUESTION_SAGA,
-        questionId
-    };
+  return {
+    type: DELETE_QUESTION_SAGA,
+    questionId
+  };
 }
 export function fetchNumberOfQuestions(): FetchNumberOfQuestions {
-    return {
-        type: FETCH_NUMQUESTIONS
-    };
+  return {
+    type: FETCH_NUMQUESTIONS
+  };
 }
 export function addNumQuestions(questionList: Question[]): AddNumQuestions {
-    return {
-        type: ADD_NUMQUESTIONS,
-        questionList
-    };
+  return {
+    type: ADD_NUMQUESTIONS,
+    questionList
+  };
 }
 
 export function fetchNewQuestion(question: Question): FetchNewQuestion {
-    return {
-        type: FETCH_NEW_QUESTION,
-        question
-    };
+  return {
+    type: FETCH_NEW_QUESTION,
+    question
+  };
 }
 
 export function loadPage(): LoadPage {
-    return {
-        type: LOAD_PAGE
-    };
+  return {
+    type: LOAD_PAGE
+  };
+}
+
+export function paginate(page: number): Paginate {
+  return {
+    type: PAGINATE,
+    page
+  };
 }

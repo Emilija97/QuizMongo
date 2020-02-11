@@ -10,7 +10,6 @@ import { Link, Redirect } from "react-router-dom";
 interface Props {
   register: Function;
   auth: AuthState;
-  logOut: Function;
 }
 
 interface State {
@@ -34,7 +33,6 @@ class Register extends Component<Props, State> {
       submitted: false
     };
 
-    this.props.logOut();
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -158,8 +156,7 @@ function mapStateToProps(state: AppState) {
 
 function mapDispatchToProps(dispatch: Dispatch<Action>) {
   return {
-    register: (user: User) => dispatch(actions.register(user)),
-    logOut: () => dispatch(actions.logOut())
+    register: (user: User) => dispatch(actions.register(user))
   };
 }
 

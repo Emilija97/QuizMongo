@@ -7,21 +7,27 @@ import { Action } from "redux";
 import * as actions from "../store/actions/questions";
 // import "../styles/ToSelectQuestion.css";
 import { Redirect } from "react-router";
+import PaginationComponent from "./PaginationComponent";
 
 interface Props {
   questionList: Question[];
+  questions: Question[];
   fetchNumberOfQuestions: Function;
   selectQuestion: Function;
+  paginate: Function;
+  fetchQuestions: Function;
 }
 
 interface State {
   redirect: boolean;
+  currentPage: any;
 }
 class ToSelectQuestion extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      redirect: false
+      redirect: false,
+      currentPage: 1
     };
   }
   setRedirect = () => {
@@ -35,8 +41,19 @@ class ToSelectQuestion extends Component<Props, State> {
     }
   };
 
+  paginatePage = (pageNumber: number) => this.setCurrentPage(pageNumber);
+
+  setCurrentPage = (pageNumber: number) => {
+    this.setState({
+      currentPage: pageNumber
+    });
+    this.props.paginate(pageNumber);
+  };
+
   componentDidMount() {
-    if (this.props.questionList.length === 0) this.props.fetchNumberOfQuestions();
+    if (this.props.questionList.length === 0) this.props.paginate(this.state.currentPage);
+    if (this.props.questions.length === 0) this.props.fetchQuestions();
+    console.log(this.props.questions);
   }
 
   render() {
@@ -60,7 +77,7 @@ class ToSelectQuestion extends Component<Props, State> {
           <tbody>
             {this.props.questionList.map((question: Question, index: number) => (
               <tr key={question.id}>
-                <th scope="row">{index}</th>
+                <th scope="row">{(this.state.currentPage - 1) * 10 + (index + 1)}</th>
                 <td>{question.question}</td>
                 <td>
                   <button
@@ -78,7 +95,12 @@ class ToSelectQuestion extends Component<Props, State> {
           </tbody>
         </table>
 
-        <div className="d-flex col-5 offset-4">
+        <PaginationComponent
+          postsPerPage={10}
+          totalPosts={this.props.questions.length}
+          paginatePage={this.paginatePage}
+        />
+        {/* <div className="d-flex col-5 offset-4">
           <button
             className="dugmeLoad btn btn-info btn-md"
             onClick={() => {
@@ -87,7 +109,7 @@ class ToSelectQuestion extends Component<Props, State> {
           >
             Load more questions
           </button>
-        </div>
+        </div> */}
       </div>
     );
   }
@@ -95,14 +117,17 @@ class ToSelectQuestion extends Component<Props, State> {
 
 function mapStateToProps(state: AppState) {
   return {
-    questionList: state.questionList
+    questionList: state.questionList,
+    questions: state.questions
   };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<Action>) {
   return {
     selectQuestion: (question: Question) => dispatch(selectQuestion(question)),
-    fetchNumberOfQuestions: () => dispatch(actions.fetchNumberOfQuestions())
+    fetchNumberOfQuestions: () => dispatch(actions.fetchNumberOfQuestions()),
+    fetchQuestions: () => dispatch(actions.fetchQuestions()),
+    paginate: (page: number) => dispatch(actions.paginate(page))
   };
 }
 

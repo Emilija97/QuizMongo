@@ -46,14 +46,9 @@ export function getNumberOfQuestions(questionNumber: number) {
   // );
 }
 
-// export function loadPageQuestions(){
-//   const params = new URLSearchParams(location.search);
-//     const page = parseInt(params.get('page')) || 1;
-//     if (page !== pager.currentPage) {
-//         fetch(`/api/items?page=${page}`, { method: 'GET' })
-//             .then(response => response.json())
-//             .then(({pager, pageOfItems}) => {
-//                 this.setState({ pager, pageOfItems });
-//             });
-//     }
-// }
+export function loadCurrentPage(page: number) {
+  console.log("Pribavljam");
+  return fetch(`${env.url}/questions/${page}`)
+    .then(response => response.json())
+    .catch(error => console.log(error));
+}
