@@ -46,9 +46,9 @@ export function getNumberOfQuestions(questionNumber: number) {
   // );
 }
 
-export function loadCurrentPage(page: number) {
+export function loadCurrentPage(collection: string, page: number) {
   console.log("Pribavljam");
-  return fetch(`${env.url}/questions/${page}`)
+  return fetch(`${env.url}/${collection}/${page}`)
     .then(response => response.json())
     .catch(error => console.log(error));
 }

@@ -16,8 +16,8 @@ import PaginationComponent from "./PaginationComponent";
 
 interface Props {
   questions: Question[];
-  paginate: Function;
   questionList: Question[];
+  paginate: Function;
   fetchQuestions: Function;
   deleteQuestionSaga: Function;
   fetchNewQuestion: Function;
@@ -43,7 +43,7 @@ const initialState = {
   answer4: "",
   correctAnswer: "",
   currentPage: 1,
-  flag: true
+  flag: false
 };
 class AddDeleteQuestion extends Component<Props, State> {
   constructor(props: Props) {
@@ -54,7 +54,20 @@ class AddDeleteQuestion extends Component<Props, State> {
   componentDidMount() {
     //da ne bi doslo do ucitavanja istih pitanja vise puta, nego da moze sa bilo koje stranice
     if (this.props.questions.length === 0) this.props.fetchQuestions();
+    if (this.props.questionList.length === 0)
+      this.props.paginate("questions", this.state.currentPage);
   }
+
+  paginatePage = (pageNumber: number) => this.setCurrentPage(pageNumber);
+  setCurrentPage = (pageNumber: number) => {
+    this.setState({
+      currentPage: pageNumber
+    });
+    this.props.paginate("questions", pageNumber);
+  };
+  refreshPagination = () => {
+    this.setState({ flag: !this.state.flag });
+  };
 
   render() {
     if (!this.props.questions) {
@@ -75,16 +88,18 @@ class AddDeleteQuestion extends Component<Props, State> {
                 </tr>
               </thead>
               <tbody>
-                {this.props.questions.map((question: Question, index: number) => (
+                {this.props.questionList.map((question: Question, index: number) => (
                   <tr key={question.id}>
-                    <th scope="row">{index}</th>
+                    <th scope="row">{(this.state.currentPage - 1) * 10 + (index + 1)}</th>
                     <td>{question.question}</td>
                     <td>
                       <button
                         className="deleteBtn btn btn-info"
                         onClick={() => {
                           this.props.deleteQuestionSaga(question.id);
-                          this.setState({ flag: true });
+                          // this.props.paginate("questions", this.state.currentPage);
+                          // this.refreshPagination();
+                          // this.setState({ flag: !this.state.flag });
                         }}
                       >
                         Delete
@@ -94,6 +109,13 @@ class AddDeleteQuestion extends Component<Props, State> {
                 ))}
               </tbody>
             </table>
+
+            <PaginationComponent
+              postsPerPage={10}
+              totalPosts={this.props.questions.length}
+              paginatePage={this.paginatePage}
+              refresh={this.state.flag}
+            />
           </div>
 
           <div
@@ -166,7 +188,7 @@ class AddDeleteQuestion extends Component<Props, State> {
                   correctAnswer: this.state.correctAnswer
                 };
                 this.props.fetchNewQuestion(question);
-                this.setState({ flag: true });
+                // this.setState({ flag: true });
               }}
             >
               Add
@@ -189,9 +211,9 @@ function mapStateToProps(state: AppState) {
 function mapDispatchToProps(dispatch: Dispatch<Action>) {
   return {
     fetchQuestions: () => dispatch(fetchQuestions()),
-    paginate: (page: number) => dispatch(paginate(page)),
     fetchNewQuestion: (question: Question) => dispatch(fetchNewQuestion(question)),
-    deleteQuestionSaga: (questionId: string) => dispatch(deleteQuestionSaga(questionId))
+    deleteQuestionSaga: (questionId: string) => dispatch(deleteQuestionSaga(questionId)),
+    paginate: (collection: string, page: number) => dispatch(paginate(collection, page))
   };
 }
 

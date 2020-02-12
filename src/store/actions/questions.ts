@@ -15,6 +15,10 @@ export const DELETE_QUESTION = "DELETE QUESTION";
 export const LOAD_PAGE = "LOAD PAGE";
 export const PAGINATE = "PAGINATE";
 
+// //We need to change questions state and questionList state, so we have two functions
+// export const ADD_QUESTION_SUCCESS = "ADD QUESTION SUCCESS";
+// export const DELETE_QUESTION_SUCCESS = "DELETE QUESTION SUCCESS";
+
 export interface FetchQuestions extends Action {}
 export interface AddQuestions extends Action {
   questions: Question[];
@@ -42,6 +46,7 @@ export interface AddNumQuestions extends Action {
 export interface LoadPage extends Action {}
 export interface Paginate extends Action {
   page: number;
+  collection: string;
 }
 
 export function fetchQuestions(): FetchQuestions {
@@ -104,9 +109,10 @@ export function loadPage(): LoadPage {
   };
 }
 
-export function paginate(page: number): Paginate {
+export function paginate(collection: string, page: number): Paginate {
   return {
     type: PAGINATE,
+    collection,
     page
   };
 }

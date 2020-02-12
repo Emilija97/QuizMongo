@@ -60,7 +60,7 @@ class Popup extends Component<Props, State> {
     return (
       <div className="popup flex position-fixed h-50 mr-5 bg-light">
         {this.renderRedirectH()}
-        <div className="popup_inner">
+        <div className="popup_inner ml-5 mr-5">
           <h3 className="response font-italic text-center">
             Well done, you finished the game with {this.props.score} points of{" "}
             {this.props.maxScore}!

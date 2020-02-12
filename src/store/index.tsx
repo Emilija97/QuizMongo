@@ -6,6 +6,9 @@ import { toSelectReducer } from "./reducers/toselect-reducer";
 import { Result } from "../models/Result";
 import { resultReducer } from "./reducers/result-reducer";
 import { authReducer, AuthState } from "./reducers/auth-reducer";
+import { CardItem } from "../models/CardItem";
+import { cardReducer } from "./reducers/card-reducer";
+import { cardListReducer } from "./reducers/cardlist-reducer";
 
 export interface AppState {
   questions: Question[];
@@ -13,6 +16,8 @@ export interface AppState {
   questionList: Question[];
   results: Result[];
   auth: AuthState;
+  cards: CardItem[];
+  cardList: CardItem[];
 }
 
 export const rootReducer = combineReducers({
@@ -20,5 +25,7 @@ export const rootReducer = combineReducers({
   selected: selectedQuestionReducer,
   questionList: toSelectReducer,
   results: resultReducer,
-  auth: authReducer
+  auth: authReducer,
+  cards: cardReducer,
+  cardList: cardListReducer
 });

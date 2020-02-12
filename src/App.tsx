@@ -14,7 +14,7 @@ import "./styles/Home.css";
 import { Navbar, Nav, NavDropdown, Form, Button } from "react-bootstrap";
 
 export const env = {
-  url: "http://localhost:3000"
+  url: "http://localhost:5000"
 };
 
 const sagaMiddleware = createSagaMiddleware();
@@ -50,9 +50,9 @@ class App extends Component {
               <Nav className="mr-auto">
                 <Nav.Link href="/Account">Account</Nav.Link>
                 <Nav.Link href="#link">Link</Nav.Link>
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                <NavDropdown title="Card actions" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="/CardPage">Add card</NavDropdown.Item>
+                  <NavDropdown.Item href="/ShowCards">See all cards</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>

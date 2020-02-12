@@ -10,6 +10,8 @@ import { AuthState } from "../store/reducers/auth-reducer";
 import { fetchQuestions } from "../store/actions/questions";
 import { fetchResults } from "../store/actions/results";
 import { Navbar } from "react-bootstrap";
+import { CardItem } from "../models/CardItem";
+import { fetchCards } from "../store/actions/cards";
 
 interface Props {
   questions: Question[];
@@ -17,6 +19,8 @@ interface Props {
   results: Result[];
   fetchResults: Function;
   auth: AuthState;
+  cards: CardItem[];
+  fetchCards: Function;
 }
 interface State {}
 class AppRoot extends Component<Props, State> {
@@ -38,6 +42,7 @@ class AppRoot extends Component<Props, State> {
     // console.log(this.props.auth);
     if (this.props.questions.length === 0) this.props.fetchQuestions();
     if (this.props.results.length === 0) this.props.fetchResults();
+    if (this.props.cards.length === 0) this.props.fetchCards();
   }
 
   render() {
@@ -96,14 +101,16 @@ function mapStateToProps(state: AppState) {
   return {
     questions: state.questions,
     results: state.results,
-    auth: state.auth
+    auth: state.auth,
+    cards: state.cards
   };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<Action>) {
   return {
     fetchQuestions: () => dispatch(fetchQuestions()),
-    fetchResults: () => dispatch(fetchResults())
+    fetchResults: () => dispatch(fetchResults()),
+    fetchCards: () => dispatch(fetchCards())
   };
 }
 

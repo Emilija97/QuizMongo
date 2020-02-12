@@ -49,6 +49,7 @@ app.use("/cards", require("./backend/routes/card"));
 
 //Warnings set false
 mongoose.set("useFindAndModify", false);
+mongoose.set("useCreateIndex", true);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
@@ -60,6 +61,6 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));

@@ -5,5 +5,6 @@ body {
 }
 
 body {
-    background: linear-gradient(#fef9ff, #f7f2ff, #ede2ff, #ac8bd6) fixed;
+    /* background: linear-gradient(#fef9ff, #f7f2ff, #ede2ff, #ac8bd6) fixed; */
+    background-color: lightgrey;
 }

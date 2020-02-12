@@ -9,5 +9,6 @@ const card = mongo.Schema({
 }, {
     collection: "card"
 });
+card.index({ "$**": "text" }); //We need $text option for search
 
-module.exports = mongo.model("Card", card, "card");
+module.exports = mongo.model("CardItem", card, "card");

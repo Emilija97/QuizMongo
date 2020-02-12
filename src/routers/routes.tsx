@@ -11,6 +11,8 @@ import LoginPage from "../components/LoginPage";
 import Register from "../components/Register";
 import PaginationComponent from "../components/PaginationComponent";
 import Account from "../components/Account";
+import CardPage from "../components/CardPage";
+import ShowCards from "../components/ShowCards";
 
 export const Routes = () => (
   <Switch>
@@ -25,6 +27,8 @@ export const Routes = () => (
     <Route path={"/ChosenNumber"} component={ChosenNumber} />
     <Route path={"/PaginationComponent"} component={PaginationComponent} />
     <Route path={"/Account"} component={Account} />
+    <Route path={"/CardPage"} component={CardPage} />
+    <Route path={"/ShowCards"} component={ShowCards} />
     <Redirect to={"/"} />
   </Switch>
 );

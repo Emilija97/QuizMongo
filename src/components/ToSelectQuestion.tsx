@@ -21,13 +21,15 @@ interface Props {
 interface State {
   redirect: boolean;
   currentPage: any;
+  flag: boolean;
 }
 class ToSelectQuestion extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
       redirect: false,
-      currentPage: 1
+      currentPage: 1,
+      flag: false
     };
   }
   setRedirect = () => {
@@ -47,11 +49,12 @@ class ToSelectQuestion extends Component<Props, State> {
     this.setState({
       currentPage: pageNumber
     });
-    this.props.paginate(pageNumber);
+    this.props.paginate("questions", pageNumber);
   };
 
   componentDidMount() {
-    if (this.props.questionList.length === 0) this.props.paginate(this.state.currentPage);
+    if (this.props.questionList.length === 0)
+      this.props.paginate("questions", this.state.currentPage);
     if (this.props.questions.length === 0) this.props.fetchQuestions();
     console.log(this.props.questions);
   }
@@ -99,6 +102,7 @@ class ToSelectQuestion extends Component<Props, State> {
           postsPerPage={10}
           totalPosts={this.props.questions.length}
           paginatePage={this.paginatePage}
+          refresh={this.state.flag}
         />
         {/* <div className="d-flex col-5 offset-4">
           <button
@@ -127,7 +131,8 @@ function mapDispatchToProps(dispatch: Dispatch<Action>) {
     selectQuestion: (question: Question) => dispatch(selectQuestion(question)),
     fetchNumberOfQuestions: () => dispatch(actions.fetchNumberOfQuestions()),
     fetchQuestions: () => dispatch(actions.fetchQuestions()),
-    paginate: (page: number) => dispatch(actions.paginate(page))
+    paginate: (collection: string, page: number) =>
+      dispatch(actions.paginate(collection, page))
   };
 }
 
