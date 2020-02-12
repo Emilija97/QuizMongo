@@ -18,7 +18,11 @@ import {
   ME_FROM_TOKEN_FAILURE,
   MeFromTokenSuccess,
   MeFromTokenFailure,
-  RESET_TOKEN
+  RESET_TOKEN,
+  UPDATE_FAILURE,
+  UPDATE_SUCCESS,
+  UpdateSuccess,
+  UpdateFailure
 } from "../actions/users";
 
 export interface AuthState {
@@ -198,6 +202,27 @@ export function authReducer(state = initialState, action: Action) {
         errorMessage: "",
         registered: false
       };
+    case UPDATE_SUCCESS: {
+      console.log("U success sam");
+      const { payload } = action as UpdateSuccess;
+      console.log(payload.name);
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          password: payload.password,
+          name: payload.name,
+          surname: payload.surname
+        }
+      };
+    }
+    case UPDATE_FAILURE: {
+      const { errorMessage } = action as UpdateFailure;
+      return {
+        ...state,
+        errorMessage: errorMessage
+      };
+    }
     default: {
       return state;
     }

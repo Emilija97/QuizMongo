@@ -96,6 +96,7 @@ class LoginPage extends Component<Props, State> {
                 <div className="help-block">Password is required</div>
               )}
             </div>
+            <h5 className="text-danger">{this.props.auth.errorMessage}</h5>
             <div className="form-group">
               <button className="btn btn-primary">Log In</button>
               <Link to="/Register" className="btn btn-link">

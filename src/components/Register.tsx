@@ -62,7 +62,7 @@ class Register extends Component<Props, State> {
       return (
         <div className="flex col-md-4 offset-md-4 py-5">
           <h3>Register page </h3>
-          <h3>{this.props.auth.errorMessage}</h3>
+          <h3 className="text-danger">{this.props.auth.errorMessage}</h3>
           <form name="form" onSubmit={this.handleSubmit}>
             <div
               className={

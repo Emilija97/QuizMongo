@@ -86,17 +86,15 @@ router.put("/:id", (req, res, next) => {
         surname,
         username,
         password
-    })
+    });
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(req.body.password, salt, (err, hash) => {
             if (err) throw err;
             req.body.password = hash;
-            UserModel.findOneAndUpdate({ username, id }, { $set: req.body })
-                .then(doc => {
-                    const data = doc;
-                    res.status(200).json(data);
-                })
-                .catch(err => console.log(err));
+            UserModel.findOneAndUpdate({ username, id }, { $set: req.body }, (err, result) => {
+                if (err) return res.status(400).json({ msg: "Something went wrong, try again" });
+                res.status(200).json(result);
+            });
         });
     });
 });

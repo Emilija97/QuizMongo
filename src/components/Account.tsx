@@ -5,7 +5,6 @@ import { Action } from "redux";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/users";
 import { AuthState } from "../store/reducers/auth-reducer";
-import { Link, Redirect } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 
 interface Props {
@@ -59,6 +58,9 @@ class Account extends Component<Props, State> {
   // (e: any) =>
 
   render() {
+    if (!this.props.auth.isAuthenticated) {
+      return <h3>You have to be logged in</h3>;
+    }
     return (
       <div className="flex col-md-4 offset-md-4 py-5">
         <h3>Account settings </h3>
@@ -111,6 +113,8 @@ class Account extends Component<Props, State> {
               onChange={(e: any) => this.setState({ surname: e.target.value })}
             />
           </Form.Group>
+
+          <h5 className="text-danger">{this.props.auth.errorMessage}</h5>
 
           <Button variant="primary" type="submit">
             Submit

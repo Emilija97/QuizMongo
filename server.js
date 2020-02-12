@@ -45,12 +45,10 @@ app.use("/questions", require("./backend/routes/question"));
 app.use("/users", require("./backend/routes/user"));
 app.use("/results", require("./backend/routes/result"));
 app.use("/auth", require("./backend/routes/auth"));
+app.use("/cards", require("./backend/routes/card"));
 
-// router.get("/", (req, res) => {
-//     QuestionModel.find()
-//         .sort({ date: -1 })
-//         .then(questions => res.json(questions));
-// });
+//Warnings set false
+mongoose.set("useFindAndModify", false);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {

@@ -61,7 +61,9 @@ import {
   REGISTER,
   ME_FROM_TOKEN,
   Update,
-  UPDATE
+  UPDATE,
+  updateSuccess,
+  updateFailure
 } from "./actions/users";
 let offset = 1;
 
@@ -121,16 +123,16 @@ function* logIn(action: LogIn) {
   let tmp = false;
   const res = yield logInUser(username, password);
   yield logInUser(username, password).then(res => {
-    console.log(res);
-    if (res.msg !== "User Does not exist") {
+    if (res.msg !== "User Does not exist" && res.msg !== "Invalid credentials") {
       tmp = true;
     }
   });
+  console.log(res.msg);
 
   if (tmp) {
     yield put(logInSuccess(res));
   } else {
-    yield put(logInFailure(res));
+    yield put(logInFailure(res.msg));
   }
 }
 
@@ -160,7 +162,15 @@ function* register(action: Register) {
 function* update(action: Update) {
   const payload = action.payload;
   console.log(payload);
-  yield updateUser(payload);
+  let tmp = false;
+  yield updateUser(payload).then(res => {
+    if (res.msg !== "Something went wrong, try again") tmp = true;
+  });
+  if (tmp) {
+    yield put(updateSuccess(payload));
+  } else {
+    yield put(updateFailure("Something went wrong, try again"));
+  }
 }
 
 function* meFromToken(action: MeFromToken) {
