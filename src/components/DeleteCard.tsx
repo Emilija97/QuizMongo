@@ -40,7 +40,6 @@ class DeleteCard extends Component<Props, State> {
     }
     return (
       <div className="d-flex flex-column text-center align-content-lg-start">
-        <h1>{this.props.auth.user.username}</h1>
         <CardColumns className="py-5">
           {this.props.cards.map((card: CardItem, index: number) => (
             <Card bg="info" text="white" style={{ width: "24rem" }} key={card.id}>
