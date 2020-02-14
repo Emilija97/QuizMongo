@@ -72,10 +72,9 @@ router.get("/:page", (req, res, next) => {
 // @route   GET cards by word
 // @desc    Get All Cards which contain word
 // @access  Public
-router.get("/search/:word", (req, res, next) => {
+router.get("/search/:title", (req, res, next) => {
     console.log("Usao sam get by title");
-    const word = req.params.word;
-    CardModel.find({ $text: { $search: word } })
+    CardModel.find({ $text: { $search: req.params.title } })
         .then(doc => {
             console.log(doc.length);
             const len = doc.length;

@@ -30,8 +30,8 @@ export function getAllCardsByUsername(username: string) {
     .catch(error => console.log(error));
 }
 
-export function findCardByWord(word: string) {
-  return fetch(`${env.url}/cards/search/${word}`)
+export function findCardByWord(title: string) {
+  return fetch(`${env.url}/cards/search/${title}`)
     .then(response => response.json())
     .catch(error => console.log(error));
 }
