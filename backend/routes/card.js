@@ -18,6 +18,21 @@ router.get("/", (req, res, next) => {
         .catch(err => console.log(err));
 });
 
+// @route   GET cards/createdby/:username
+// @desc    Get All Cards
+// @access  Public
+router.get("/createdby/:username", (req, res, next) => {
+    var username = req.params.username;
+    console.log(username);
+    console.log("Usao sam sa username-om");
+    CardModel.find({ username: username })
+        .then(doc => {
+            const data = doc;
+            res.status(200).json(data);
+        })
+        .catch(err => console.log(err));
+});
+
 // @route   POST cards
 // @desc    Create A Card
 // @access  Public
@@ -54,13 +69,13 @@ router.get("/:page", (req, res, next) => {
         });
 });
 
-// @route   GET cards by title
-// @desc    Get All Cards with this title
+// @route   GET cards by word
+// @desc    Get All Cards which contain word
 // @access  Public
-router.get("/search/:title", (req, res, next) => {
+router.get("/search/:word", (req, res, next) => {
     console.log("Usao sam get by title");
-    const title = req.params.title;
-    CardModel.find({ $text: { $search: title } })
+    const word = req.params.word;
+    CardModel.find({ $text: { $search: word } })
         .then(doc => {
             console.log(doc.length);
             const len = doc.length;
@@ -69,6 +84,40 @@ router.get("/search/:title", (req, res, next) => {
             res.status(200).json(data);
         })
         .catch(err => console.log(err));
+});
+
+// @route   DELETE cards/:id
+// @desc    Delete A Card
+// @access  Public
+router.delete("/:id", (req, res, next) => {
+    const id = req.params.id;
+    console.log(id);
+    CardModel.deleteOne({ id: id })
+        .then(result => {
+            console.log(result);
+            res.status(200).json({
+                message: "Deleted!"
+            });
+        })
+        .catch(error => {
+            res.status(400).json({
+                error: error
+            });
+        });
+});
+
+// @route   PUT /cards/:id
+// @desc    Update card
+// @access  Public
+router.put("/:id", (req, res, next) => {
+    console.log("Usao sam u update za card");
+    const id = req.params.id;
+    const { title, field, username, date } = req.body;
+
+    CardModel.findOneAndUpdate({ username, id }, { $set: req.body }, (err, result) => {
+        if (err) return res.status(400).json({ msg: "Something went wrong, try again" });
+        res.status(200).json(result);
+    });
 });
 
 module.exports = router;

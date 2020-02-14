@@ -2,58 +2,65 @@ import React, { Component, Dispatch } from "react";
 import { AppState } from "../store";
 import { Action } from "redux";
 import { connect } from "react-redux";
-import * as actions from "../store/actions/cards";
 import { AuthState } from "../store/reducers/auth-reducer";
 import { Form, Button } from "react-bootstrap";
 import { CardItem } from "../models/CardItem";
-import uuid from "uuid";
+import { Redirect } from "react-router-dom";
+import { updateCard } from "../store/actions/cards";
 
 interface Props {
   auth: AuthState;
-  saveCard: Function;
+  updateCard: Function;
+  edited: CardItem;
 }
 
 interface State {
+  username: string;
   title: string;
   field: string;
-  date: string;
-  username: string;
+  submitted: boolean;
+  redirect: boolean;
 }
 
-class CardPage extends Component<Props, State> {
+class EditCard extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
+      username: "",
       title: "",
       field: "",
-      date: "",
-      username: ""
+      submitted: false,
+      redirect: false
     };
 
+    console.log(this.props.edited.title);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  getDate = () => {
-    const time = new Date().toString();
-    this.setState({ date: time });
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    });
+  };
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to="/ShowCards" />;
+    }
   };
 
   handleSubmit(e: any) {
     e.preventDefault();
     console.log("U handle sam");
+    this.setState({ submitted: true });
     const { title, field } = this.state;
     const card: CardItem = {
-      id: uuid.v4().toString(),
-      title: title,
-      field: field,
-      date: this.state.date,
-      username: this.props.auth.user.username
+      id: this.props.edited.id,
+      date: this.props.edited.date,
+      username: this.props.auth.user.username,
+      title: title !== "" ? title : this.props.edited.title,
+      field: field !== "" ? field : this.props.edited.field
     };
-    this.props.saveCard(card);
-  }
-
-  componentDidMount() {
-    this.getDate();
+    this.props.updateCard(card);
   }
 
   render() {
@@ -62,7 +69,8 @@ class CardPage extends Component<Props, State> {
     }
     return (
       <div className="flex col-md-4 offset-md-4 py-5">
-        <h3>Create Card </h3>
+        {this.renderRedirect()}
+        <h3>Edit card</h3>
 
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="formBasicEmail">
@@ -77,11 +85,16 @@ class CardPage extends Component<Props, State> {
             </Form.Text>
           </Form.Group>
 
-          <Form.Group controlId="formBasicTitle">
-            <Form.Label>Title </Form.Label>
+          <Form.Group controlId="formBasicDate">
+            <Form.Label>Created </Form.Label>
+            <Form.Control type="text" readOnly placeholder={this.props.edited.date} />
+          </Form.Group>
+
+          <Form.Group controlId="formTitle">
+            <Form.Label>Title</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Title"
+              defaultValue={this.props.edited.title}
               onChange={(e: any) => this.setState({ title: e.target.value })}
             />
           </Form.Group>
@@ -91,12 +104,19 @@ class CardPage extends Component<Props, State> {
             <Form.Control
               as="textarea"
               rows="3"
+              defaultValue={this.props.edited.field}
               onChange={(e: any) => this.setState({ field: e.target.value })}
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
-            Add Card
+          <h5 className="text-danger">{this.props.auth.errorMessage}</h5>
+
+          <Button className="float-right" variant="primary" type="submit">
+            Submit
+          </Button>
+
+          <Button variant="primary" type="submit" onClick={() => this.setRedirect()}>
+            Back
           </Button>
         </Form>
       </div>
@@ -106,14 +126,15 @@ class CardPage extends Component<Props, State> {
 
 function mapStateToProps(state: AppState) {
   return {
-    auth: state.auth
+    auth: state.auth,
+    edited: state.edited
   };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<Action>) {
   return {
-    saveCard: (card: CardItem) => dispatch(actions.saveCard(card))
+    updateCard: (card: CardItem) => dispatch(updateCard(card))
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardPage);
+export default connect(mapStateToProps, mapDispatchToProps)(EditCard);

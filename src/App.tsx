@@ -49,13 +49,10 @@ class App extends Component {
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="mr-auto">
                 <Nav.Link href="/Account">Account</Nav.Link>
-                <Nav.Link href="#link">Link</Nav.Link>
                 <NavDropdown title="Card actions" id="basic-nav-dropdown">
                   <NavDropdown.Item href="/CardPage">Add card</NavDropdown.Item>
                   <NavDropdown.Item href="/ShowCards">See all cards</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                  <NavDropdown.Item href="/DeleteCard">Delete card</NavDropdown.Item>
                 </NavDropdown>
               </Nav>
               {!localStorage.getItem("token") ? (

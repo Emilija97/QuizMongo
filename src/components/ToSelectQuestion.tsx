@@ -104,16 +104,6 @@ class ToSelectQuestion extends Component<Props, State> {
           paginatePage={this.paginatePage}
           refresh={this.state.flag}
         />
-        {/* <div className="d-flex col-5 offset-4">
-          <button
-            className="dugmeLoad btn btn-info btn-md"
-            onClick={() => {
-              this.props.fetchNumberOfQuestions();
-            }}
-          >
-            Load more questions
-          </button>
-        </div> */}
       </div>
     );
   }

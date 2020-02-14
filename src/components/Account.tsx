@@ -55,7 +55,6 @@ class Account extends Component<Props, State> {
       this.props.update(user);
     }
   }
-  // (e: any) =>
 
   render() {
     if (!this.props.auth.isAuthenticated) {

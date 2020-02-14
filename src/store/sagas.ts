@@ -1,7 +1,6 @@
 import { all, takeEvery, put } from "redux-saga/effects";
 import {
   getAllQuestions,
-  getNumberOfQuestions,
   postNewQuestion,
   deleteQuestionFromApi,
   loadCurrentPage
@@ -26,7 +25,6 @@ import {
   DeleteQuestionSaga,
   deleteQuestion,
   FETCH_QUESTIONS,
-  FETCH_NUMQUESTIONS,
   FETCH_NEW_QUESTION,
   DELETE_QUESTION_SAGA,
   Paginate,
@@ -66,7 +64,6 @@ import {
   updateFailure
 } from "./actions/users";
 import {
-  FetchCards,
   addCards,
   FETCH_CARDS,
   SaveCard,
@@ -76,9 +73,24 @@ import {
   SEARCH_FOR_CARD,
   SearchForCard,
   searchForCardSuccess,
-  searchForCardFailure
+  searchForCardFailure,
+  UPDATE_CARD,
+  updateCardSuccess,
+  updateCardFailure,
+  deleteCardSuccess,
+  DELETE_CARD,
+  DeleteCard,
+  FetchCardsByUsername,
+  FETCH_CARDS_USERNAME
 } from "./actions/cards";
-import { getAllCards, postNewCard, findCardByTitle } from "../services/card.service";
+import {
+  getAllCards,
+  postNewCard,
+  findCardByWord,
+  updateCardService,
+  deleteCardById,
+  getAllCardsByUsername
+} from "../services/card.service";
 import { CardItem } from "../models/CardItem";
 
 //QUESTIONS
@@ -88,13 +100,6 @@ function* fetchQuestions() {
   yield put(addQuestions(questions));
 }
 
-// function* fetchNumberOfQuestions() {
-//   const questionList = yield getNumberOfQuestions(offset);
-//   console.log(questionList);
-//   yield put(addNumQuestions(questionList));
-//   offset++;
-// }
-
 function* paginate(action: Paginate) {
   const page = action.page;
   const collection = action.collection;
@@ -103,6 +108,7 @@ function* paginate(action: Paginate) {
   switch (collection) {
     case "questions":
       yield put(addNumQuestions(result));
+      break;
     default:
       yield put(addCardList(result));
   }
@@ -223,12 +229,18 @@ function* fetchCards() {
   yield put(addCards(cards));
 }
 
+function* fetchCardsByUsername(action: FetchCardsByUsername) {
+  const username = action.username;
+  console.log(username);
+  const cards = yield getAllCardsByUsername(username);
+  yield put(addCards(cards));
+}
+
 function* searchForCard(action: SearchForCard) {
-  const title = action.title;
+  const word = action.word;
   let tmp = false;
-  // const result = yield findCardByTitle(title);
   let result: CardItem[] = [];
-  yield findCardByTitle(title).then(res => {
+  yield findCardByWord(word).then(res => {
     console.log(res);
     if (res.length !== 0) {
       tmp = true;
@@ -242,10 +254,29 @@ function* searchForCard(action: SearchForCard) {
   }
 }
 
+function* updateCard(action: Update) {
+  const payload = action.payload;
+  console.log(payload);
+  let tmp = false;
+  yield updateCardService(payload).then(res => {
+    if (res.msg !== "Something went wrong, try again") tmp = true;
+  });
+  if (tmp) {
+    yield put(updateCardSuccess(payload));
+  } else {
+    yield put(updateCardFailure("Something went wrong, try again"));
+  }
+}
+
+function* deleteCard(action: DeleteCard) {
+  const cardId = action.cardId;
+  yield deleteCardById(cardId);
+  yield put(deleteCardSuccess(cardId));
+}
+
 export function* rootSaga() {
   yield all([
     takeEvery(FETCH_QUESTIONS, fetchQuestions),
-    // takeEvery(FETCH_NUMQUESTIONS, fetchNumberOfQuestions),
     takeEvery(FETCH_NEW_QUESTION, fetchNewQuestion),
     takeEvery(DELETE_QUESTION_SAGA, deleteQuestionSaga),
     takeEvery(SAVE_RESULT, saveResult),
@@ -259,6 +290,9 @@ export function* rootSaga() {
     takeEvery(UPDATE, update),
     takeEvery(FETCH_CARDS, fetchCards),
     takeEvery(SAVE_CARD, saveCard),
-    takeEvery(SEARCH_FOR_CARD, searchForCard)
+    takeEvery(SEARCH_FOR_CARD, searchForCard),
+    takeEvery(UPDATE_CARD, updateCard),
+    takeEvery(DELETE_CARD, deleteCard),
+    takeEvery(FETCH_CARDS_USERNAME, fetchCardsByUsername)
   ]);
 }

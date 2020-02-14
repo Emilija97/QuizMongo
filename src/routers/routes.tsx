@@ -13,6 +13,8 @@ import PaginationComponent from "../components/PaginationComponent";
 import Account from "../components/Account";
 import CardPage from "../components/CardPage";
 import ShowCards from "../components/ShowCards";
+import EditCard from "../components/EditCard";
+import DeleteCard from "../components/DeleteCard";
 
 export const Routes = () => (
   <Switch>
@@ -29,6 +31,8 @@ export const Routes = () => (
     <Route path={"/Account"} component={Account} />
     <Route path={"/CardPage"} component={CardPage} />
     <Route path={"/ShowCards"} component={ShowCards} />
+    <Route path={"/EditCard"} component={EditCard} />
+    <Route path={"/DeleteCard"} component={DeleteCard} />
     <Redirect to={"/"} />
   </Switch>
 );

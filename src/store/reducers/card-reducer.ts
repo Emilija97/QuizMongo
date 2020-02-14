@@ -23,7 +23,8 @@ export function cardReducer(state: CardItem[] = initialState, action: Action) {
     }
     case ADD_CARDS: {
       const { cards } = action as AddCards;
-      return [...state, ...cards];
+      state = cards;
+      return state;
     }
     case DELETE_CARD_SUCCESS: {
       const { cardId } = action as DeleteCardSuccess;

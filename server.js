@@ -4,10 +4,6 @@ const path = require("path");
 const router = express.Router();
 const config = require("config");
 
-// const QuestionModel = require("./backend/models/question");
-// const ResultModel = require("./backend/models/result");
-// const UserModel = require("./backend/models/user");
-
 const app = express();
 
 // Bodyparser Middleware

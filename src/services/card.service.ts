@@ -24,8 +24,41 @@ export function getAllCards() {
     .catch(error => console.log(error));
 }
 
-export function findCardByTitle(title: string) {
-  return fetch(`${env.url}/cards/search/${title}`)
+export function getAllCardsByUsername(username: string) {
+  return fetch(`${env.url}/cards/createdby/${username}`)
     .then(response => response.json())
     .catch(error => console.log(error));
+}
+
+export function findCardByWord(word: string) {
+  return fetch(`${env.url}/cards/search/${word}`)
+    .then(response => response.json())
+    .catch(error => console.log(error));
+}
+
+export function updateCardService(card: any) {
+  console.log(card);
+  return fetch(`${env.url}/cards/${card.id}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      id: card.id,
+      username: card.username,
+      date: card.date,
+      title: card.title,
+      field: card.field
+    })
+  })
+    .then(response => response.json())
+    .catch(error => console.log(error));
+}
+
+export function deleteCardById(cardId: string) {
+  console.log(cardId);
+  return fetch(`${env.url}/cards/${cardId}`, {
+    method: "DELETE"
+  }).then(response => response.json());
 }
